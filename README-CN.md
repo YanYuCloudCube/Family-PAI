@@ -416,6 +416,430 @@ Claude: prompt_engine(command:">>code_review")
 
 适用于：`system-prompt`、`gate-guidance`、`style-guidance`
 
+## 完整配置示例
+
+以下是一个完整的Claude Desktop配置示例，包含了YYC³团队优化的所有设置：
+
+```json
+{
+  // ========== AI 和代码补全相关设置 ==========
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "markdown": true,
+    "plaintext": false
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.inlineSuggest.enable": true,
+  "github.copilot.advanced": {
+    "debug.overrideProxy": false,
+    "debug.showScores": false,
+    "debug.testOverride": false,
+    "model": "copilot-chat-4o",
+    "disableLanguages": []
+  },
+
+  // Cursor 特定 AI 设置 - 充分利用 M4 Pro Max 性能
+  "cursor.cpp.disabledLanguages": [],
+  "cursor.general.enableAutoSave": true,
+  "cursor.chat.maxTokens": 8000,
+  "cursor.chat.enableCodebaseIndexing": true,
+  "cursor.chat.enableSemanticSearch": true,
+  "cursor.chat.indexing.maxMemoryMB": 16384,
+  "cursor.chat.enableBackgroundIndexing": true,
+  "cursor.chat.maxConcurrentIndexingJobs": 8,
+
+  "tabnine.experimentalAutoImports": true,
+  "codeium.enable": true,
+  "codeium.automaticallyTriggeredSuggestions": true,
+  "codeium.enableConfig": {
+    "*": true,
+    "markdown": true,
+    "plaintext": true
+  },
+
+  // ========== 编辑器设置 ==========
+  "editor.fontSize": 12,
+  "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+  "editor.tabSize": 4,
+  "editor.wordWrap": "off",
+  "editor.mouseWheelZoom": false,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "boundary",
+  "editor.guides.indentation": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+
+  // 代码建议和补全增强
+  "editor.inlineSuggest.enabled": true,
+  "editor.inlineSuggest.showToolbar": "always",
+  "editor.suggestSelection": "first",
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "off",
+    "strings": "on"
+  },
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.acceptSuggestionOnCommitCharacter": true,
+  "editor.acceptSuggestionOnEnter": "smart",
+  "editor.tabCompletion": "on",
+  "editor.parameterHints.enabled": true,
+  "editor.wordBasedSuggestions": "allDocuments",
+
+  // 代码建议类型增强
+  "editor.suggest.localityBonus": true,
+  "editor.suggest.showWords": true,
+  "editor.suggest.showSnippets": true,
+  "editor.suggest.showKeywords": true,
+  "editor.suggest.showClasses": true,
+  "editor.suggest.showFunctions": true,
+  "editor.suggest.showVariables": true,
+
+  // 大文件优化 - 利用 128GB 内存
+  "editor.largeFileOptimizations": true,
+  "editor.maxTokenizationLineLength": 20000,
+
+  // 格式化
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.organizeImports": "always",
+    "source.fixAll.eslint": "always",
+    "source.fixAll.stylelint": "always"
+  },
+  "editor.codeActions.triggerOnFocusChange": true,
+  "editor.autoIndentOnPaste": true,
+  "editor.definitionLinkOpensInPeek": true,
+  "editor.stablePeek": true,
+  "editor.renderRichScreenReaderContent": true,
+
+  // TreeSitter 实验性功能
+  "editor.experimental.preferTreeSitter.css": true,
+  "editor.experimental.preferTreeSitter.ini": true,
+  "editor.experimental.preferTreeSitter.typescript": true,
+  "editor.experimental.treeSitterTelemetry": true,
+  "editor.experimental.preferTreeSitter.regex": true,
+  "editor.allowVariableFontsInAccessibilityMode": true,
+  "editor.aiStats.enabled": true,
+
+  // ========== 语言特定设置 ==========
+  "python.languageServer": "None",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+
+  "typescript.tsserver.maxTsServerMemory": 8192,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  "javascript.suggest.autoImports": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-21",
+      "path": "/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home",
+      "default": true
+    }
+  ],
+  "java.maven.downloadSources": true,
+
+  "rust-analyzer.workspace.discoverConfig": null,
+  "rust-analyzer.inlayHints.enable": true,
+
+  // ========== 终端设置 ==========
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.env.osx": {
+    "NODE_ENV": "development",
+    "PATH": "$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin",
+    "NODE_OPTIONS": "--max-old-space-size=16384"
+  },
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.enableVisualBell": false,
+  "terminal.integrated.scrollback": 10000,
+  "accessibility.signals.terminalBell": {},
+
+  // ========== 文件和搜索设置 ==========
+  "files.maxMemoryForLargeFilesMB": 4096,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true,
+    "**/dist": true
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/.hg/store/**": true,
+    "**/dist/**": true,
+    "**/build/**": true
+  },
+
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true
+  },
+  "search.maxResults": 10000,
+
+  // ========== 工作区设置 ==========
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.editor.enablePreview": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.statusBar.visible": true,
+  "workbench.sideBar.location": "left",
+
+  // ========== 调试设置 ==========
+  "debug.inlineValues": "on",
+  "debug.allowBreakpointsEverywhere": true,
+  "debug.toolBarLocation": "docked",
+
+  // ========== 资源管理器 ==========
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+
+  // ========== 安全设置 ==========
+  "security.workspace.trust.enabled": true,
+  "security.workspace.trust.startupPrompt": "never",
+
+  // ========== 拼写检查 ==========
+  "cSpell.words": [
+    "tabnine",
+    "Pylance",
+    "Menlo",
+    "overtype",
+    "Kohler",
+    "Ritwickdey",
+    "codeium",
+    "Copilot",
+    "azurefunctions",
+    "SWA",
+    "temurin",
+    "Adoptium",
+    "SQLTools",
+    "MySQL"
+  ],
+  "cSpell.checkVSCodeSystemFiles": true,
+
+  // ========== 数据库设置 ==========
+  "sqltools.connections": [
+    {
+      "name": "Local MySQL",
+      "driver": "MySQL",
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "database": "yyc3_mymgmt",
+      "username": "yyc3_mymgmt",
+      "password": "yyc3_management",
+      "connectionTimeout": 15000,
+      "options": {
+        "ssl": false
+      }
+    }
+  ],
+  "mysql.clientPath": "/usr/local/mysql/bin/mysql",
+  "database-client.autoSync": true,
+
+  // ========== Git 设置 ==========
+  "git.enableCommitSigning": false,
+  "git.postCommitCommand": "sync",
+  "git.openRepositoryInParentFolders": "never",
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+
+  // ========== Chat 和 AI 工具 ==========
+  "chat.instructionsFilesLocations": {
+    ".github/instructions": true,
+    "/Users/yanyu/.aitk/instructions/": true
+  },
+  "chat.allowAnonymousAccess": true,
+  "chat.checkpoints.showFileChanges": true,
+  "chat.tools.terminal.autoApprove": {
+    "brew install git": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "xcode-select --install": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/usr/bin/xcode-select --install": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "export PATH=\"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\" && git --version": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "export PATH=\"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\" && cd /Users/yanyu/AI-Management && git status": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "export PATH=\"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\" && cd /Users/yanyu/AI-Management && git init": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "export PATH=\"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\" && cd /Users/yanyu/AI-Management && git remote add origin https://github.com/YY-Nexus/YYC-AI-management.git": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "export PATH=\"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\" && cd /Users/yanyu/AI-Management && git add .": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "export PATH=\"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\" && cd /Users/yanyu/AI-Management && git commit -m \"Initial commit: AI Management Platform\"": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "export PATH=\"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\" && cd /Users/yanyu/AI-Management && git push -u origin main": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "npm install --save-dev ts-jest @types/jest typescript": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "npm cache clean --force": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "npm install": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "npm test -- --passWithNoTests": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "pnpm": true,
+    "yarn add": true,
+    "npx": true,
+    "tsc": true,
+    "npm test": true,
+    "npm run build": true
+  },
+  "github.copilot.chat.codeGeneration.instructions": [],
+
+  // ========== 文件类型特定设置 ==========
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+
+  // ========== 扩展和性能 ==========
+  "extensions.autoUpdate": "onlyEnabledExtensions",
+  "extensions.autoCheckUpdates": false,
+
+  "disable-hardware-acceleration": false,
+
+  // ========== 其他设置 ==========
+  "@azure.argTenant": "",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "aws.cloudformation.telemetry.enabled": true,
+  "json.schemaDownload.enable": true
+}
+```
+
+### 配置说明
+
+这个配置文件包含了以下主要设置类别：
+
+#### 1. AI和代码补全
+- **GitHub Copilot**: 完整启用，支持多种文件类型
+- **Cursor**: 优化M4 Pro Max性能，启用代码库索引和语义搜索
+- **Codeium**: 自动触发建议，支持多种文件类型
+
+#### 2. 编辑器优化
+- **字体设置**: Menlo等宽字体，12号字
+- **性能优化**: 大文件优化，TreeSitter实验性功能
+- **格式化**: 保存时自动格式化，使用Prettier
+- **代码建议**: 增强的内联建议和自动完成
+
+#### 3. 语言特定配置
+- **TypeScript**: 最大内存8192MB，自动导入
+- **Python**: 基本类型检查模式
+- **Java**: JavaSE-21运行时
+- **Rust**: 启用内联提示
+
+#### 4. 终端设置
+- **默认Shell**: zsh
+- **环境变量**: NODE_ENV、PATH、NODE_OPTIONS优化
+- **性能**: 10000行滚动缓冲区
+
+#### 5. 工作区设置
+- **主题**: One Dark Pro
+- **图标**: Material Icon Theme
+- **启动**: 新建无标题文件
+
+#### 6. 数据库连接
+- **MySQL**: 本地连接配置
+- **自动同步**: 启用
+
+#### 7. Git集成
+- **GitLens**: AI模型集成
+- **自动同步**: 提交后自动同步
+
+#### 8. Chat和AI工具
+- **指令文件**: 支持自定义指令位置
+- **终端自动批准**: 常用命令白名单
+
+#### 9. 安全设置
+- **工作区信任**: 启用，无启动提示
+
+### 自定义建议
+
+根据您的需求，可以调整以下设置：
+
+1. **内存优化**: 根据您的系统内存调整`editor.maxTokenizationLineLength`和`cursor.chat.indexing.maxMemoryMB`
+2. **主题**: 更改`workbench.colorTheme`和`workbench.iconTheme`
+3. **数据库**: 修改`sqltools.connections`中的连接信息
+4. **AI模型**: 调整`github.copilot.advanced.model`和`gitlens.ai.vscode.model`
+5. **终端环境**: 修改`terminal.integrated.env.osx`中的环境变量
+
+### 应用配置
+
+将上述配置保存到您的Claude Desktop配置文件中：
+
+**macOS**:
+```
+~/Library/Application Support/Claude/claude_desktop_config.json
+```
+
+**Windows**:
+```
+%APPDATA%\Claude\claude_desktop_config.json
+```
+
+**Linux**:
+```
+~/.config/Claude/claude_desktop_config.json
+```
+
+保存后重启Claude Desktop使配置生效。
+
+---
+
 ## 文档
 
 - [架构](docs/architecture.md) — 执行管道深入解析
