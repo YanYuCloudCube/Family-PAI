@@ -1,0 +1,102 @@
+name: Auto PR
+
+on:
+  push:
+    branches:
+      - 'feature/**'
+      - 'fix/**'
+      - 'chore/**'
+      - 'docs/**'
+      - 'refactor/**'
+      - 'test/**'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Type check
+        run: pnpm typecheck
+
+      - name: Build
+        run: pnpm build
+
+      - name: Extract branch info
+        id: branch-info
+        run: |
+          BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
+          
+          TYPE=$(echo "$BRANCH_NAME" | cut -d'/' -f1)
+          NAME=$(echo "$BRANCH_NAME" | cut -d'/' -f2- | tr '-' ' ' | sed 's/\b\(.\)/\u\1/g')
+          
+          case $TYPE in
+            feature) TITLE="✨ feat: $NAME" ;;
+            fix) TITLE="🐛 fix: $NAME" ;;
+            chore) TITLE="🔧 chore: $NAME" ;;
+            docs) TITLE="📝 docs: $NAME" ;;
+            refactor) TITLE="♻️ refactor: $NAME" ;;
+            test) TITLE="✅ test: $NAME" ;;
+            *) TITLE="$NAME" ;;
+          esac
+          
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: ${{ steps.branch-info.outputs.title }}
+          title: ${{ steps.branch-info.outputs.title }}
+          body: |
+            ## 📋 变更描述
+            
+            此PR由CI自动创建，来自分支 `${{ steps.branch-info.outputs.branch }}`
+            
+            ## ✅ 检查项
+            
+            - [x] 代码已通过ESLint检查
+            - [x] 类型检查通过
+            - [x] 所有测试通过
+            - [x] 构建成功
+            
+            ## 📦 变更文件
+            
+            ${{ github.event.commits[0].message }}
+            
+            ---
+            
+            > 此PR由 🤖 YYC³ Claw AI 自动创建
+          branch: ${{ github.ref_name }}
+          base: main
+          labels: |
+            automated pr
+            ${{ contains(github.ref, 'feature') && 'enhancement' || '' }}
+            ${{ contains(github.ref, 'fix') && 'bug' || '' }}
+            ${{ contains(github.ref, 'docs') && 'documentation' || '' }}
+          draft: false
+          delete-branch: true

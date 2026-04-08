@@ -1,0 +1,41 @@
+{
+  "name": "yyc3-claw",
+  "version": "1.0.0",
+  "description": "YYC³ Claw AI - 智能编程助手核心框架",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm -r dev",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "clean": "pnpm -r clean",
+    "release": "pnpm -r release"
+  },
+  "keywords": [
+    "yyc3",
+    "claw",
+    "ai",
+    "mcp",
+    "model-context-protocol",
+    "ai-agent",
+    "multimodal",
+    "typescript"
+  ],
+  "author": "YYC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YYC-Cube/yyc3-claw.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YYC-Cube/yyc3-claw/issues"
+  },
+  "homepage": "https://github.com/YYC-Cube/yyc3-claw#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
+}

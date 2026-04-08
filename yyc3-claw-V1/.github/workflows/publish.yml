@@ -1,0 +1,165 @@
+name: Publish to NPM
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version bump type (patch/minor/major) or specific version'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      prerelease:
+        description: 'Is this a prerelease?'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: pnpm typecheck
+
+      - name: Test
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
+
+  publish:
+    name: Publish to NPM
+    runs-on: ubuntu-latest
+    needs: validate
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Get current version
+        id: current-version
+        run: |
+          CURRENT_VERSION=$(node -p "require('./packages/claw-core/package.json').version")
+          echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Bump version
+        id: bump-version
+        run: |
+          cd packages/claw-core
+          
+          if [ "${{ github.event.inputs.prerelease }}" == "true" ]; then
+            npm version pre${{ github.event.inputs.version }} --preid=beta -m "chore: release v%s (beta)"
+          else
+            npm version ${{ github.event.inputs.version }} -m "chore: release v%s"
+          fi
+          
+          NEW_VERSION=$(node -p "require('./package.json').version")
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create .npmrc
+        run: |
+          cat > .npmrc << EOF
+            //registry.npmjs.org/:_authToken=\${NPM_TOKEN}
+            @claw-ai:registry=https://registry.npmjs.org/
+          EOF
+
+      - name: Publish to NPM
+        run: |
+          cd packages/claw-core
+          pnpm publish --access public --no-git-checks
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Push changes
+        run: |
+          git push --follow-tags origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          tag_name: v${{ steps.bump-version.outputs.new_version }}
+          name: Release v${{ steps.bump-version.outputs.new_version }}
+          body: |
+            ## 🚀 发布说明
+            
+            ### 版本变更
+            - 从 v${{ steps.current-version.outputs.version }} 升级到 v${{ steps.bump-version.outputs.new_version }}
+            
+            ### 安装方式
+            ```bash
+            npm install @claw-ai/core@${{ steps.bump-version.outputs.new_version }}
+            # 或
+            pnpm add @claw-ai/core@${{ steps.bump-version.outputs.new_version }}
+            ```
+            
+            ---
+            
+            > 此版本由 🤖 YYC³ Claw AI 自动发布
+          draft: false
+          prerelease: ${{ github.event.inputs.prerelease == 'true' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          echo "## ✅ 发布成功!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **版本**: v${{ steps.bump-version.outputs.new_version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **NPM包**: [@claw-ai/core@${{ steps.bump-version.outputs.new_version }}](https://www.npmjs.com/package/@claw-ai/core/v/${{ steps.bump-version.outputs.new_version }})" >> $GITHUB_STEP_SUMMARY
+          echo "- **预发布**: ${{ github.event.inputs.prerelease }}" >> $GITHUB_STEP_SUMMARY
