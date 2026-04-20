@@ -7,7 +7,7 @@ import {
   FamilyMemberConfig,
 } from './types';
 import { IFamilyMember, MemberStatus } from './base-member';
-import { Navigator, Thinker, Prophet, Bolero } from './members';
+import { Qianxing as Navigator, Wanwu as Thinker, Xianzhi as Prophet, Bole as Bolero } from './members';
 import { logger } from '../logger.js';
 
 export class FamilyOrchestrator {

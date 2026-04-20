@@ -111,9 +111,9 @@ describe('FamilyWorkSystem', () => {
       expect(members).toContain('wanwu');
     });
 
-    it('should fallback to qianxing and wanwu for unknown categories', () => {
+    it('should fallback to qianxing for unknown categories', () => {
       const members = workSystem.suggestMembersForTask('unknown' as TaskCategory);
-      expect(members).toEqual(['qianxing', 'wanwu']);
+      expect(members).toEqual(['qianxing']);
     });
   });
 

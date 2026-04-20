@@ -7,7 +7,8 @@
     "prepare": "husky || true"
   },
   "devDependencies": {
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "typedoc": "^0.28.19"
   },
   "dependencies": {
     "graphviz": "^0.0.9"

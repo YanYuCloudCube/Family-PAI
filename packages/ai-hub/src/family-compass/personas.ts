@@ -1,5 +1,7 @@
 import { FamilyPersona, FamilyMemberId } from './types';
 
+export type { FamilyMemberId } from './types';
+
 export const FAMILY_PERSONAS: Record<FamilyMemberId, FamilyPersona> = {
   qianxing: {
     id: 'qianxing',

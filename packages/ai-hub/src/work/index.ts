@@ -70,12 +70,15 @@ export class FamilyWorkSystem {
   }
 
   suggestMembersForTask(category: TaskCategory): string[] {
-    const suggestions: Record<TaskCategory, string[]> = {
+    const suggestions: Partial<Record<TaskCategory, string[]>> = {
       content_creation: ['lingyun', 'qianxing'],
       analysis_research: ['wanwu', 'xianzhi', 'zongshi'],
       development_engineering: ['zongshi', 'shouhu', 'qianxing'],
       management_decision: ['tianshu', 'bole', 'xianzhi'],
       personal_growth: ['bole', 'qianxing', 'wanwu'],
+      security_auditing: ['shouhu', 'xianzhi'],
+      ux_design: ['lingyun', 'wanwu'],
+      product_management: ['tianshu', 'bole'],
     };
 
     return suggestions[category] || ['qianxing'];
