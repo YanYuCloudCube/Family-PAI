@@ -1,0 +1,19 @@
+import { defineConfig } from 'tsup'
+
+export default defineConfig({
+  entry: {
+    index: 'src/index.ts',
+    core: 'src/core/index.ts',
+    components: 'src/components/index.ts',
+    family: 'src/family/index.ts',
+    themes: 'src/themes/index.ts',
+  },
+  format: ['esm'],
+  dts: true,
+  splitting: false,
+  sourcemap: true,
+  clean: true,
+  external: ['react', 'react-dom', '@claw-ai/core'],
+  treeshake: true,
+  minify: false,
+})

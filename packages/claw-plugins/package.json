@@ -1,0 +1,82 @@
+{
+  "name": "@family-ai/plugins",
+  "version": "1.0.0",
+  "description": "Family AI Plugins - AI Hooks、零依赖组件和特效组件集合",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./ai-hooks": {
+      "import": "./dist/ai-hooks/index.js",
+      "types": "./dist/ai-hooks/index.d.ts"
+    },
+    "./zero-deps": {
+      "import": "./dist/zero-deps/index.js",
+      "types": "./dist/zero-deps/index.d.ts"
+    },
+    "./effects": {
+      "import": "./dist/effects/index.js",
+      "types": "./dist/effects/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/",
+    "test": "vitest run",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "@family-ai/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  },
+  "keywords": [
+    "claw",
+    "claw-ai",
+    "ai",
+    "plugins",
+    "hooks",
+    "react",
+    "zero-dependency",
+    "effects"
+  ],
+  "author": "YYC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YYC-Cube/yyc3-claw.git",
+    "directory": "packages/claw-plugins"
+  },
+  "bugs": {
+    "url": "https://github.com/YYC-Cube/yyc3-claw/issues"
+  },
+  "homepage": "https://github.com/YYC-Cube/yyc3-claw#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

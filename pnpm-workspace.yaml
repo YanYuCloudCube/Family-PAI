@@ -1,0 +1,6 @@
+packages:
+  - 'packages/*'
+  - 'packages/claw-ui/*'
+  - 'packages/claw-plugins/*'
+  - 'yyc3-ui-organized/yyc3-zero-deps/*'
+  - 'yyc3-ui-organized/yyc3-zero-ui-base/*'

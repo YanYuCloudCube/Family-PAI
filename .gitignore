@@ -102,3 +102,4 @@ plans/future/
 server/prompts/general/test_*.md
 node_modules/
 *.tgz
+.github/workflows/
