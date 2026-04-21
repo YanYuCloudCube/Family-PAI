@@ -1,32 +1,31 @@
-# 🏠 FAmily π³ Core
+# 🌹 FAmily π³ Core | @yyc3/core
 
-> **信任如π，始终如一 | AI Family 极致信任核心引擎**
+> **亦师亦友亦伯乐 · 一言一语一华章**
+>
+> **AI Family 极致信任核心引擎 | 万象归元于云枢**
 
-FAmily π³ Core 是一个革命性的 **AI Family 智能家庭核心引擎**，提供极致的信任体系、完整的 AI 体验和始终如一的服务质量。
-
-**@family-pai/core** - FAmily π³ 的核心包
+[![npm version](https://img.shields.io/npm/v/@yyc3/core.svg)](https://www.npmjs.com/package/@yyc3/core)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
 
 ---
 
 ## ✨ 核心特性
 
-### 🔐 统一认证 (Auth) - 信任基石
+### 🔐 统一认证 - 信任基石
 - 多平台自动检测 (Claude Code、Cursor、Windsurf、VSCode)
-- API Key 和 OAuth 双模式支持
-- OpenAI / Ollama / Anthropic 多提供商
-- 统一的认证接口 + 安全脱敏
+- OpenAI / Ollama / Anthropic 多提供商支持
+- 统一认证接口 + 安全脱敏 + 自动故障恢复
 
-### 🔗 MCP 协议 (Model Context Protocol) - 连接枢纽
-- 完整的 MCP 协议实现
+### 🔗 MCP 协议 - 连接枢纽
+- 完整 MCP 协议实现 (Model Context Protocol)
 - 工具调用和资源管理
-- Prompt 模板系统
-- JSON-RPC 2.0 通信
+- JSON-RPC 2.0 通信 + Prompt 模板系统
 
-### 🎯 技能系统 (Skills) - 能力矩阵
-- 可扩展的技能框架
-- 内置多种实用技能
-- 自定义技能支持
-- 智能技能推荐 + 质量门控
+### 🎯 技能系统 - 能力矩阵
+- 可扩展技能框架 + 内置实用技能
+- 智能推荐 + 学习 + 组合编排
+- 质量门控 + 性能追踪优化
 
 ### 🤖 AI Family 智能体 - 家庭核心
 8 位专业 AI 家人协同工作：
@@ -43,9 +42,9 @@ FAmily π³ Core 是一个革命性的 **AI Family 智能家庭核心引擎**，
 | 知遇·伯乐 | 🎯 推荐官 | 用户画像、个性化推荐、潜能发掘 |
 
 ### 🎨 多模态处理 - 感知延伸
-- **图像**: 分析、OCR、分类、检测
-- **音频**: 转录、语音合成
-- **文档**: 解析、摘要、对比
+- **图像**: 分析、OCR、分类、检测、批量处理
+- **音频**: 转录、语音合成、多语言支持
+- **文档**: 解析、摘要、对比、关键信息提取
 
 ---
 
@@ -53,35 +52,35 @@ FAmily π³ Core 是一个革命性的 **AI Family 智能家庭核心引擎**，
 
 ```bash
 # pnpm (推荐)
-pnpm add @family-pai/core
+pnpm add @yyc3/core
 
 # npm
-npm install @family-pai/core
+npm install @yyc3/core
 
 # yarn
-yarn add @family-pai/core
+yarn add @yyc3/core
 ```
 
 ---
 
 ## 🚀 快速开始
 
-### 基础使用
+### 基础使用 - 5分钟上手
 
 ```typescript
-import { FamilyCore, UnifiedAuthManager } from '@family-pai/core'
+import { FamilyCore, UnifiedAuthManager } from '@yyc3/core'
 
-// 初始化认证（信任基石）
+// 1️⃣ 初始化认证（信任基石）
 const auth = new UnifiedAuthManager()
 await auth.autoDetect()
 
-// 创建 FAmily π³ 实例
+// 2️⃣ 创建 FAmily π³ 实例
 const pai = new FamilyCore({
   authManager: auth,
   debug: true,
 })
 
-// 发送消息
+// 3️⃣ 发送消息
 const response = await pai.chat([
   { role: 'user', content: '你好，请介绍一下你自己' }
 ])
@@ -89,10 +88,10 @@ const response = await pai.chat([
 console.log(response.choices[0]?.message?.content)
 ```
 
-### AI Family 使用
+### 使用 AI Family
 
 ```typescript
-import { AIFamilyManager } from '@family-pai/core/ai-family'
+import { AIFamilyManager } from '@yyc3/core/ai-family'
 
 const family = new AIFamilyManager({ authManager: auth })
 
@@ -118,10 +117,38 @@ const collabResult = await family.collaborate({
 })
 ```
 
-### 多模态使用
+### 技能系统使用
 
 ```typescript
-import { MultimodalManager } from '@family-pai/core/multimodal'
+import { SkillManager } from '@yyc3/core/skills'
+
+const skills = new SkillManager()
+
+// 注册自定义技能
+skills.register({
+  id: 'custom.code-review',
+  name: '代码审查',
+  description: '审查代码质量',
+  version: '1.0.0',
+  category: 'analysis',
+}, async (input, context) => {
+  return {
+    success: true,
+    output: { score: 95 },
+    duration: 100,
+  }
+})
+
+// 执行技能
+const result = await skills.execute('custom.code-review', {
+  code: 'function hello() { return "world" }'
+})
+```
+
+### 多模态处理
+
+```typescript
+import { MultimodalManager } from '@yyc3/core/multimodal'
 
 const multimodal = new MultimodalManager(auth, {
   openai: { apiKey: process.env.OPENAI_API_KEY }
@@ -129,26 +156,17 @@ const multimodal = new MultimodalManager(auth, {
 
 // 图像分析
 const imageResult = await multimodal.analyzeImage({
-  type: 'image',
-  format: 'png',
-  data: imageBase64,
+  type: 'image', format: 'png', data: imageBase64
 }, { tasks: ['describe', 'ocr'] })
 
 // 音频转录
 const audioResult = await multimodal.transcribeAudio({
-  type: 'audio',
-  format: 'mp3',
-  data: audioBuffer,
+  type: 'audio', format: 'mp3', data: audioBuffer
 }, { language: 'zh' })
-
-// 语音合成
-const speech = await multimodal.synthesizeSpeech('你好世界', { voice: 'alloy' })
 
 // 文档解析
 const docResult = await multimodal.parseDocument({
-  type: 'document',
-  format: 'pdf',
-  data: pdfBuffer,
+  type: 'document', format: 'pdf', data: pdfBuffer
 })
 ```
 
@@ -157,7 +175,7 @@ const docResult = await multimodal.parseDocument({
 ## 📁 模块结构
 
 ```
-@family-pai/core
+@yyc3/core
 ├── auth/           # 认证模块（信任基石）
 ├── mcp/            # MCP 协议（连接枢纽）
 ├── skills/         # 技能系统（能力矩阵）
@@ -169,19 +187,19 @@ const docResult = await multimodal.parseDocument({
 
 ```typescript
 // 认证模块
-import { UnifiedAuthManager } from '@family-pai/core/auth'
+import { UnifiedAuthManager } from '@yyc3/core/auth'
 
 // MCP 模块
-import { MCPManager } from '@family-pai/core/mcp'
+import { MCPManager } from '@yyc3/core/mcp'
 
 // 技能模块
-import { SkillManager } from '@family-pai/core/skills'
+import { SkillManager } from '@yyc3/core/skills'
 
 // AI Family
-import { AIFamilyManager } from '@family-pai/core/ai-family'
+import { AIFamilyManager } from '@yyc3/core/ai-family'
 
 // 多模态
-import { MultimodalManager } from '@family-pai/core/multimodal'
+import { MultimodalManager } from '@yyc3/core/multimodal'
 ```
 
 ---
@@ -221,6 +239,15 @@ interface FamilyPAIConfig {
 | `collaborate(config)` | 协同执行 |
 | `getAgent(role)` | 获取智能体实例 |
 
+### SkillManager
+
+| 方法 | 描述 |
+|------|------|
+| `register(skill, handler)` | 注册技能 |
+| `execute(id, input)` | 执行技能 |
+| `recommend(task)` | 智能推荐技能 |
+| `compose(ids, strategy)` | 组合技能 |
+
 ### MultimodalManager
 
 | 方法 | 描述 |
@@ -229,7 +256,6 @@ interface FamilyPAIConfig {
 | `transcribeAudio(audio, options)` | 音频转录 |
 | `synthesizeSpeech(text, options)` | 语音合成 |
 | `parseDocument(document, options)` | 文档解析 |
-| `summarizeDocument(document)` | 文档摘要 |
 
 ---
 
@@ -260,32 +286,56 @@ pnpm docs
 
 ---
 
-## 🎯 品牌理念
+## 🧪 测试覆盖
 
 ```
-FAmily π³ = FA (AI Family) + mily + PAI (π³ AI)
-             ↓          ↓        ↓
-         家庭智能    家庭     圆周率立方智能
-                            
-π (Pi)      → 无限信任 + 始终如一 + 精准智能
-³ (Cubed)   → 三维立体 + 完整体验 + 全面覆盖
+ Test Files  10 passed (10)
+      Tests  207 passed | 5 skipped (212)
+   Duration  466ms
 ```
-
-**💬 口号：信任如π，始终如一**
 
 ---
 
-## 📄 License
+## 🎯 品牌理念
 
-MIT License © 2026 FAmily PAI Team
+```
+╔═══════════════════════════════════════════════════╗
+║                                                    ║
+║                FAmily π³ Core                      ║
+║                                                    ║
+║   🔵 π (Pi) - 圆周率                              ║
+║      ├─ 无限不循环 → 无限信任                     ║
+║      ├─ 恒定不变   → 始终如一                     ║
+║      └─ 数学之美   → 精准智能                     ║
+║                                                    ║
+║   🔷 ³ (Cubed) - 立方                             ║
+║      ├─ 三维立体   → 完整体验                     ║
+║      ├─ 全面覆盖   → 多维能力                     ║
+║      └─ 稳固基础   → 可靠架构                     ║
+║                                                    ║
+╚═══════════════════════════════════════════════════╝
+```
+
+**💬 口号：信任如π，始终如一**  
+**🌹 理念：亦师亦友亦伯乐；一言一语一华章**
+
+---
+
+## 📄 许可证
+
+MIT License © 2026 [YanYuCloudCube](https://github.com/YanYuCloudCube)
 
 ---
 
 <div align="center">
 
-> **「FAmily π³ · 信任如π，始终如一」**
+## 🌹 携手共进，智慧同行
+
+> ***YanYuCloudCube***
+> *言启象限 | 语枢未来*
 >
-> **📦 NPM**: [`@family-pai/core`](https://www.npmjs.com/package/@family-pai/core)
-> **🌐 文档**: [api.yyccube.com](https://api.yyccube.com)
+> **📦 NPM**: [`@yyc3/core`](https://www.npmjs.com/package/@yyc3/core)  
+> **🏢 GitHub**: [YanYuCloudCube](https://github.com/YanYuCloudCube)  
+> **🌐 文档**: [yyccube.com](https://yyccube.com)
 
 </div>
