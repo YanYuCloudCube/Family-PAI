@@ -1,4 +1,4 @@
-# YYC³ Claw AI V1 - 项目结构报告
+# FAmily π³ V1 - 项目结构报告
 
 > **亦师亦友亦伯乐；一言一语一华章**
 
@@ -9,7 +9,7 @@
 ```
 yyc3-claw-V1/
 ├── packages/
-│   └── claw-core/                    # 核心包 @claw-ai/core
+│   └── claw-core/                    # 核心包 @yyc3/core
 │       ├── src/
 │       │   ├── __tests__/            # 测试文件
 │       │   │   └── core.test.ts

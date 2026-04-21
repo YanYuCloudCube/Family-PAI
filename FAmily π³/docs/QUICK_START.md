@@ -8,10 +8,10 @@
 
 ```bash
 # 使用 pnpm
-pnpm add @claw-ai/core @claw-ai/web-ui
+pnpm add @yyc3/core @yyc3/web-ui
 
 # 或使用 npm
-npm install @claw-ai/core @claw-ai/web-ui
+npm install @yyc3/core @yyc3/web-ui
 ```
 
 ## 🚀 快速开始
@@ -19,7 +19,7 @@ npm install @claw-ai/core @claw-ai/web-ui
 ### 1. 基础聊天
 
 ```typescript
-import { UnifiedAuthManager } from '@claw-ai/core'
+import { UnifiedAuthManager } from '@yyc3/core'
 
 const auth = new UnifiedAuthManager()
 
@@ -38,7 +38,7 @@ console.log('AI 回复:', response.choices[0]?.message?.content)
 ### 2. 流式聊天
 
 ```typescript
-import { UnifiedAuthManager } from '@claw-ai/core'
+import { UnifiedAuthManager } from '@yyc3/core'
 
 const auth = new UnifiedAuthManager()
 await auth.autoDetect()
@@ -55,7 +55,7 @@ for await (const chunk of auth.stream([
 ### 3. React 组件
 
 ```tsx
-import { ClawProvider, ClawChat } from '@claw-ai/web-ui'
+import { ClawProvider, ClawChat } from '@yyc3/web-ui'
 
 function App() {
   return (
@@ -74,7 +74,7 @@ function App() {
 ### 4. 技能系统
 
 ```typescript
-import { SkillManager } from '@claw-ai/core'
+import { SkillManager } from '@yyc3/core'
 
 const skills = new SkillManager()
 
@@ -125,7 +125,7 @@ ollama serve
 ### Web UI 配置
 
 ```typescript
-import type { WebUIConfig } from '@claw-ai/web-ui'
+import type { WebUIConfig } from '@yyc3/web-ui'
 
 const config: WebUIConfig = {
   auth: {
@@ -160,7 +160,7 @@ const config: WebUIConfig = {
 
 ## 📚 API 文档
 
-### @claw-ai/core
+### @yyc3/core
 
 #### UnifiedAuthManager
 
@@ -212,7 +212,7 @@ client.on('toolCalled', callback)
 client.on('error', callback)
 ```
 
-### @claw-ai/web-ui
+### @yyc3/web-ui
 
 #### 组件
 

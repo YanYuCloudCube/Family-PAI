@@ -11,7 +11,7 @@
 **文档版本**：v1.0.0  
 **发布日期**：2026-03-27  
 **文档性质**：YYC3-Claw 项目核心规划设计  
-**适用范围**：YYC³ 全系列智能应用项目
+**适用范围**：FAmily π³ 全系列智能应用项目
 
 ---
 
@@ -1986,5 +1986,5 @@ export class Thinker implements AIMember {
 > 「***<admin@0379.email>***」
 > 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
 
-**© 2025-2026 YYC³ Team. All Rights Reserved.**
+**© 2025-2026 FAmily π³ Team. All Rights Reserved.**
 </div>

@@ -1,6 +1,6 @@
 # 📚 API 参考文档
 
-> **YYC³ Claw AI 完整 API 参考**
+> **FAmily π³ 完整 API 参考**
 
 ---
 
@@ -24,7 +24,7 @@
 #### 构造函数
 
 ```typescript
-import { UnifiedAuthManager } from '@claw-ai/core/auth'
+import { UnifiedAuthManager } from '@yyc3/core/auth'
 
 const auth = new UnifiedAuthManager(config?)
 ```
@@ -145,7 +145,7 @@ await auth.dispose()
 OpenAI 提供商实现。
 
 ```typescript
-import { OpenAIProvider } from '@claw-ai/core/auth'
+import { OpenAIProvider } from '@yyc3/core/auth'
 
 const provider = new OpenAIProvider({
   apiKey: 'sk-xxx',
@@ -161,7 +161,7 @@ const provider = new OpenAIProvider({
 Ollama 本地提供商实现。
 
 ```typescript
-import { OllamaProvider } from '@claw-ai/core/auth'
+import { OllamaProvider } from '@yyc3/core/auth'
 
 const provider = new OllamaProvider({
   baseUrl: 'http://localhost:11434',
@@ -180,7 +180,7 @@ AI Family 管理器，管理和协调所有智能体。
 #### 构造函数
 
 ```typescript
-import { AIFamilyManager } from '@claw-ai/core/ai-family'
+import { AIFamilyManager } from '@yyc3/core/ai-family'
 
 const manager = new AIFamilyManager({
   authManager,
@@ -357,7 +357,7 @@ const result = await agent.execute(task)
 #### 构造函数
 
 ```typescript
-import { SkillManager } from '@claw-ai/core/skills'
+import { SkillManager } from '@yyc3/core/skills'
 
 const manager = new SkillManager({
   maxConcurrent: 5,
@@ -448,7 +448,7 @@ const analysisSkills = manager.getByCategory('analysis')
 #### ReasoningSkill (CAGEERF 推理框架)
 
 ```typescript
-import { ReasoningSkill, reasoningHandler } from '@claw-ai/core/skills'
+import { ReasoningSkill, reasoningHandler } from '@yyc3/core/skills'
 
 manager.register(ReasoningSkill, reasoningHandler)
 ```
@@ -456,7 +456,7 @@ manager.register(ReasoningSkill, reasoningHandler)
 #### GenerationSkill (内容生成器)
 
 ```typescript
-import { GenerationSkill, generationHandler } from '@claw-ai/core/skills'
+import { GenerationSkill, generationHandler } from '@yyc3/core/skills'
 
 manager.register(GenerationSkill, generationHandler)
 ```
@@ -464,7 +464,7 @@ manager.register(GenerationSkill, generationHandler)
 #### AnalysisSkill (代码分析器)
 
 ```typescript
-import { AnalysisSkill, analysisHandler } from '@claw-ai/core/skills'
+import { AnalysisSkill, analysisHandler } from '@yyc3/core/skills'
 
 manager.register(AnalysisSkill, analysisHandler)
 ```
@@ -480,7 +480,7 @@ MCP 协议客户端。
 #### 构造函数
 
 ```typescript
-import { MCPClient } from '@claw-ai/core/mcp'
+import { MCPClient } from '@yyc3/core/mcp'
 
 const client = new MCPClient({
   transport: myTransport,
@@ -548,7 +548,7 @@ client.capabilities // 服务器能力
 #### 构造函数
 
 ```typescript
-import { MultimodalManager } from '@claw-ai/core/multimodal'
+import { MultimodalManager } from '@yyc3/core/multimodal'
 
 const manager = new MultimodalManager(authManager)
 ```

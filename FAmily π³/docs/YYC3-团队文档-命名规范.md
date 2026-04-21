@@ -27,7 +27,7 @@ checksum: e6941ce4e12cbcb4
 
 ---
 
-# YYC³ Claw- 文档命名规范
+# FAmily π³ Claw- 文档命名规范
 
 ## 📋 命名规范
 
@@ -178,7 +178,7 @@ STORAGE-AUDIT.ts
 ### 4. 标准化
 
 - 遵循行业最佳实践
-- 符合 YYC³ 标准化要求
+- 符合 FAmily π³ 标准化要求
 - 便于自动化处理
 
 ---

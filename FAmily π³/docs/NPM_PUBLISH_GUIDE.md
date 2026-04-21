@@ -1,6 +1,6 @@
 # 📦 FAmily π³ NPM 发布指南
 
-> **@family-pai 组织包发布流程说明**
+> **@yyc3 组织包发布流程说明**
 
 ---
 
@@ -21,7 +21,7 @@
 | 项目 | 值 |
 |------|-----|
 | **组织名** | `family-pai` |
-| **NPM URL** | https://www.npmjs.com/org/family-pai |
+| **NPM URL** | https://www.npmjs.com/org/yyc3 |
 | **可见性** | Public |
 | **创建时间** | 2026-04-21 |
 
@@ -43,16 +43,16 @@ npm login
 
 | 包名 | 版本 | 状态 | 说明 |
 |------|------|------|------|
-| `@family-pai/core` | 1.0.0 | ✅ 待发布 | 核心引擎包 |
+| `@yyc3/core` | 1.0.0 | ✅ 待发布 | 核心引擎包 |
 
 ### 计划中包
 
 | 包名 | 预计版本 | 状态 | 说明 |
 |------|----------|------|------|
-| `@family-pai/web-ui` | 1.0.0 | 🔜 开发中 | React/Vue UI 组件 |
-| `@family-pai/cli` | 1.0.0 | 🔜 开发中 | 命令行工具 |
-| `@family-pai/mcp-server` | 1.0.0 | 🔜 开发中 | MCP 协议服务器 |
-| `@family-pai/templates` | 1.0.0 | 🔜 开发中 | 模板库 |
+| `@yyc3/web-ui` | 1.0.0 | 🔜 开发中 | React/Vue UI 组件 |
+| `@yyc3/cli` | 1.0.0 | 🔜 开发中 | 命令行工具 |
+| `@yyc3/mcp-server` | 1.0.0 | 🔜 开发中 | MCP 协议服务器 |
+| `@yyc3/templates` | 1.0.0 | 🔜 开发中 | 模板库 |
 
 ---
 
@@ -86,7 +86,7 @@ pnpm build
 npm publish --access public
 
 # 5. 验证发布
-npm info @family-pai/core
+npm info @yyc3/core
 ```
 
 ### 自动化发布 (CI/CD)
@@ -184,7 +184,7 @@ git push origin v1.0.0-beta.1
 # CLI 方式
 npm org add family-pai username developer
 
-# 或访问 https://www.npmjs.com/org/family-pai/members
+# 或访问 https://www.npmjs.com/org/yyc3/members
 ```
 
 ---
@@ -195,23 +195,23 @@ npm org add family-pai username developer
 
 ```bash
 # 72小时内可以撤销
-npm unpublish @family-pai/core@1.0.1
+npm unpublish @yyc3/core@1.0.1
 
 # 强制撤销（不推荐）
-npm unpublish @family-pai/core@1.0.1 --force
+npm unpublish @yyc3/core@1.0.1 --force
 ```
 
 ### Q: 如何废弃旧版本？
 
 ```bash
-npm deprecate @family-pai/core@<1.0.0 "Please upgrade to latest version"
+npm deprecate @yyc3/core@<1.0.0 "Please upgrade to latest version"
 ```
 
 ### Q: 如何查看下载统计？
 
 ```bash
 # 使用 npm-stat
-open https://npm-stat.com/packages/@family-pai/core
+open https://npm-stat.com/packages/@yyc3/core
 ```
 
 ---
@@ -220,8 +220,8 @@ open https://npm-stat.com/packages/@family-pai/core
 
 | 资源 | URL |
 |------|-----|
-| NPM 组织页 | https://www.npmjs.com/org/family-pai |
-| @family-pai/core | https://www.npmjs.com/package/@family-pai/core |
+| NPM 组织页 | https://www.npmjs.com/org/yyc3 |
+| @yyc3/core | https://www.npmjs.com/package/@yyc3/core |
 | GitHub 仓库 | https://github.com/YanYuCloud/Family-AI |
 | 文档站点 | https://api.yyccube.com |
 

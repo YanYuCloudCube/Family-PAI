@@ -1,6 +1,6 @@
 # 🚀 发布指南
 
-> **YYC³ Claw AI 发布流程说明**
+> **FAmily π³ 发布流程说明**
 
 ---
 
@@ -137,7 +137,7 @@ git push --follow-tags origin main
 
 ### 4. 验证发布
 
-- 检查 [NPM](https://www.npmjs.com/package/@claw-ai/core)
+- 检查 [NPM](https://www.npmjs.com/package/@yyc3/core)
 - 检查 [GitHub Releases](https://github.com/YYC-Cube/yyc3-claw/releases)
 
 ---
@@ -168,10 +168,10 @@ npm publish --access public
 
 ```bash
 # 取消发布特定版本
-npm unpublish @claw-ai/core@1.0.1
+npm unpublish @yyc3/core@1.0.1
 
 # 取消发布整个包（谨慎使用）
-npm unpublish @claw-ai/core --force
+npm unpublish @yyc3/core --force
 ```
 
 ### GitHub Release 删除
@@ -190,20 +190,20 @@ npm unpublish @claw-ai/core --force
 
 ```bash
 # 验证包是否可用
-npm info @claw-ai/core
+npm info @yyc3/core
 
 # 安装测试
-npm install @claw-ai/core@latest
+npm install @yyc3/core@latest
 ```
 
 ### 手动验证
 
 ```typescript
 // test-install.ts
-import { ClawCore, UnifiedAuthManager } from '@claw-ai/core'
+import { ClawCore, UnifiedAuthManager } from '@yyc3/core'
 
 console.log('Package imported successfully!')
-console.log('Version:', require('@claw-ai/core/package.json').version)
+console.log('Version:', require('@yyc3/core/package.json').version)
 ```
 
 ---

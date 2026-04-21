@@ -36,7 +36,7 @@
 主文档站: https://api.yyccube.com
 API 文档: https://api.yyccube.com/API_REFERENCE.html
 GitHub:   https://github.com/YanYuCloud/Family-AI
-NPM:      https://www.npmjs.com/org/family-pai
+NPM:      https://www.npmjs.com/org/yyc3
 ```
 
 ## DNS 配置说明

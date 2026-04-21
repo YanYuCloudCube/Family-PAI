@@ -77,7 +77,7 @@
 ### 1. **即拉即用设计**
 ```bash
 # 最简单的使用方式
-npx @claw-ai/web-ui
+npx @yyc3/web-ui
 
 # 自动检测：
 # ✅ OpenAI API Key

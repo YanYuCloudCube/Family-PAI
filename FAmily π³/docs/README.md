@@ -1,6 +1,6 @@
 # 📚 文档中心
 
-> **YYC³ Claw AI 完整文档索引**
+> **FAmily π³ 完整文档索引**
 
 ---
 
@@ -47,7 +47,7 @@
 ### 🔐 认证模块 (Auth)
 
 ```typescript
-import { UnifiedAuthManager } from '@claw-ai/core/auth'
+import { UnifiedAuthManager } from '@yyc3/core/auth'
 ```
 
 **相关文档:**
@@ -64,7 +64,7 @@ import { UnifiedAuthManager } from '@claw-ai/core/auth'
 ### 🤖 AI Family 智能体
 
 ```typescript
-import { AIFamilyManager } from '@claw-ai/core/ai-family'
+import { AIFamilyManager } from '@yyc3/core/ai-family'
 ```
 
 **相关文档:**
@@ -82,7 +82,7 @@ import { AIFamilyManager } from '@claw-ai/core/ai-family'
 ### 🎯 技能系统 (Skills)
 
 ```typescript
-import { SkillManager } from '@claw-ai/core/skills'
+import { SkillManager } from '@yyc3/core/skills'
 ```
 
 **相关文档:**
@@ -100,7 +100,7 @@ import { SkillManager } from '@claw-ai/core/skills'
 ### 🔗 MCP 协议
 
 ```typescript
-import { MCPClient } from '@claw-ai/core/mcp'
+import { MCPClient } from '@yyc3/core/mcp'
 ```
 
 **相关文档:**
@@ -117,7 +117,7 @@ import { MCPClient } from '@claw-ai/core/mcp'
 ### 🎨 多模态处理
 
 ```typescript
-import { MultimodalManager } from '@claw-ai/core/multimodal'
+import { MultimodalManager } from '@yyc3/core/multimodal'
 ```
 
 **相关文档:**
@@ -136,7 +136,7 @@ import { MultimodalManager } from '@claw-ai/core/multimodal'
 
 ```bash
 # 1. 安装依赖
-pnpm install @claw-ai/core
+pnpm install @yyc3/core
 
 # 2. 初始化认证
 # 3. 开始使用

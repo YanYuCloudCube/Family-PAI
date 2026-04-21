@@ -11,7 +11,7 @@
 **文档版本**：v1.0.0  
 **发布日期**：2026-03-31  
 **文档性质**：YYC3-Claw 项目核心架构展示  
-**适用范围**：YYC³ 全系列智能应用项目开发
+**适用范围**：FAmily π³ 全系列智能应用项目开发
 
 ---
 
@@ -49,7 +49,7 @@
 │     • ABCD 四层架构 - Agent核心/ Web规范/ 工具链/ 工作区           │
 │                                                                     │
 │  🚀 最终交付：                                                      │
-│     • npx @claw-ai/web-ui → 即拉即用                                │
+│     • npx @yyc3/web-ui → 即拉即用                                │
 │     • 自动检测环境 → 零配置启动                                     │
 │     • 宿主方硬件运行 → 轻量级部署                                   │
 │                                                                     │
@@ -164,7 +164,7 @@ YYC3-Claw/
 │   │   │   ├── 📄 manager.ts            # 技能管理器
 │   │   │   ├── 📄 builtin.ts            # 内置技能
 │   │   │   └── 📄 types.ts              # 技能类型定义
-│   │   └── 📄 package.json              # @claw-ai/core
+│   │   └── 📄 package.json              # @yyc3/core
 │   ├── 📁 claw-web-ui/                  # ⭐ Claw Web UI 包 (已实现)
 │   │   ├── 📁 src/components/           # React 组件
 │   │   │   ├── 📄 claw-chat.tsx         # AI 聊天组件
@@ -175,7 +175,7 @@ YYC3-Claw/
 │   │   │   ├── 📄 use-claw-chat.ts      # 聊天 Hook
 │   │   │   └── 📄 use-claw-skills.ts    # 技能 Hook
 │   │   ├── 📄 cli.ts                    # CLI 入口
-│   │   └── 📄 package.json              # @claw-ai/web-ui
+│   │   └── 📄 package.json              # @yyc3/web-ui
 │   ├── 📁 containers/                   # 容器化模块
 │   │   └── 📁 docker/                   # Docker/Moby 集成
 │   ├── 📁 content/                      # 内容处理模块
@@ -649,8 +649,8 @@ YYC3-Claw/
      - ✅ MCP 类型定义 (types.ts)
 
 交付物:
-  - ✅ @claw-ai/core 核心包
-  - ✅ @claw-ai/web-ui Web UI 包
+  - ✅ @yyc3/core 核心包
+  - ✅ @yyc3/web-ui Web UI 包
   - ✅ 统一认证系统
   - ✅ MCP 协议层
   - ✅ 技能系统基础
@@ -702,7 +702,7 @@ YYC3-Claw/
      - 示例项目
 
 交付物:
-  - @claw-ai/web-ui@1.0.0
+  - @yyc3/web-ui@1.0.0
   - 完整文档站
   - 示例项目
 ```

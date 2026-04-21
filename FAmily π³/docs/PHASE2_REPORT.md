@@ -12,7 +12,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                  YYC³ AI Family 成员矩阵                            │
+│                  FAmily π³ AI Family 成员矩阵                            │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
 │  ┌─────────────────────────────────────────────────────┐           │
@@ -95,7 +95,7 @@ packages/claw-core/src/multimodal/
 ### AI Family 使用
 
 ```typescript
-import { AIFamilyManager, UnifiedAuthManager } from '@claw-ai/core'
+import { AIFamilyManager, UnifiedAuthManager } from '@yyc3/core'
 
 // 初始化
 const auth = new UnifiedAuthManager()
@@ -129,7 +129,7 @@ const collaborationResult = await family.collaborate({
 ### 多模态使用
 
 ```typescript
-import { MultimodalManager, UnifiedAuthManager } from '@claw-ai/core'
+import { MultimodalManager, UnifiedAuthManager } from '@yyc3/core'
 
 // 初始化
 const auth = new UnifiedAuthManager()

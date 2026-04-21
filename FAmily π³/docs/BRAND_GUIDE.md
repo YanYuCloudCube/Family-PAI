@@ -28,7 +28,7 @@
 | **中文名** | FAmily π³ |
 | **英文名** | Family-PAI |
 | **项目名** | family-pai |
-| **NPM 包** | `@family-pai/core` |
+| **NPM 包** | `@yyc3/core` |
 | **口号** | 信任如π，始终如一 |
 
 ### 品牌定位
@@ -292,7 +292,7 @@ Logo 四周应保持至少 **Logo 高度 10%** 的留白空间。
 
 ```json
 {
-  "name": "@family-pai/core",
+  "name": "@yyc3/core",
   "description": "FAmily π³ Core - AI Family 极致信任核心引擎"
 }
 ```
@@ -302,7 +302,7 @@ Logo 四周应保持至少 **Logo 高度 10%** 的留白空间。
 ```typescript
 /**
  * @file FAmily π³ 核心模块
- * @module @family-pai/core
+ * @module @yyc3/core
  * @author FAmily PAI Team
  */
 ```
@@ -312,7 +312,7 @@ Logo 四周应保持至少 **Logo 高度 10%** 的留白空间。
 | 平台 | 用户名 | 格式 |
 |------|--------|------|
 | GitHub | YanYuCloud | `FAmily π³` |
-| NPM | family-pai | `@family-pai/core` |
+| NPM | family-pai | `@yyc3/core` |
 | Twitter/X | @familypai | `FAmily π³ · 信任如π` |
 
 ---
@@ -329,10 +329,10 @@ family-pai
 
 | 包名 | 版本 | 说明 |
 |------|------|------|
-| `@family-pai/core` | 1.0.0 | 核心引擎包 |
-| `@family-pai/web-ui` | TBD | Web UI 组件包 |
-| `@family-pai/cli` | TBD | 命令行工具 |
-| `@family-pai/mcp-server` | TBD | MCP 服务器 |
+| `@yyc3/core` | 1.0.0 | 核心引擎包 |
+| `@yyc3/web-ui` | TBD | Web UI 组件包 |
+| `@yyc3/cli` | TBD | 命令行工具 |
+| `@yyc3/mcp-server` | TBD | MCP 服务器 |
 
 ### 发布配置
 
@@ -413,7 +413,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 /**
  * @file 文件名
  * @description 文件描述
- * @module @family-pai/core/模块名
+ * @module @yyc3/core/模块名
  * @author FAmily PAI Team
  * @version 1.0.0
  * @license MIT
@@ -439,7 +439,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 |------|------|
 | **Email** | admin@0379.email |
 | **GitHub** | https://github.com/YanYuCloud/Family-AI |
-| **NPM** | https://www.npmjs.com/org/family-pai |
+| **NPM** | https://www.npmjs.com/org/yyc3 |
 | **文档站** | https://api.yyccube.com |
 
 ### 更新记录
