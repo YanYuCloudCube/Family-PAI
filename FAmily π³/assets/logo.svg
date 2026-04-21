@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="piGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cubeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06B6D4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="homeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EF4444;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="240" fill="#0F172A" stroke="url(#piGradient)" stroke-width="4"/>
+
+  <!-- π Symbol (Pi) - Center -->
+  <g filter="url(#glow)">
+    <!-- Pi main body -->
+    <path d="M180,160 L180,320 M180,160 Q200,140 220,160 L220,280 Q220,300 240,300 L260,300 Q280,300 280,280 L280,160"
+          fill="none" 
+          stroke="url(#piGradient)" 
+          stroke-width="18" 
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+    
+    <!-- Pi top bar -->
+    <line x1="170" y1="165" x2="290" y2="165" 
+          stroke="url(#piGradient)" 
+          stroke-width="16" 
+          stroke-linecap="round"/>
+  </g>
+
+  <!-- ³ Superscript (Cubed) -->
+  <g transform="translate(295, 130)">
+    <!-- Small cube representation for ³ -->
+    <rect x="0" y="8" width="24" height="24" rx="4" 
+          fill="url(#cubeGradient)" opacity="0.9"/>
+    <text x="12" y="26" 
+          font-family="Arial, sans-serif" 
+          font-size="18" 
+          font-weight="bold" 
+          fill="white" 
+          text-anchor="middle">3</text>
+  </g>
+
+  <!-- Home Icon (Family) - Bottom -->
+  <g transform="translate(200, 355)">
+    <!-- House roof -->
+    <path d="M56,20 L0,55 L0,60 L112,60 L112,55 Z" 
+          fill="url(#homeGradient)"/>
+    
+    <!-- House body -->
+    <rect x="15" y="55" width="82" height="50" rx="4" 
+          fill="url(#homeGradient)"/>
+    
+    <!-- Door -->
+    <rect x="45" y="75" width="22" height="30" rx="2" 
+          fill="#0F172A"/>
+    
+    <!-- Window left -->
+    <rect x="25" y="65" width="14" height="14" rx="2" 
+          fill="#FEF3C7" opacity="0.8"/>
+    
+    <!-- Window right -->
+    <rect x="73" y="65" width="14" height="14" rx="2" 
+          fill="#FEF3C7" opacity="0.8"/>
+    
+    <!-- Chimney -->
+    <rect x="80" y="30" width="16" height="28" rx="2" 
+          fill="#DC2626"/>
+  </g>
+
+  <!-- Orbiting dots (representing AI connection/trust) -->
+  <circle cx="120" cy="150" r="6" fill="#10B981" opacity="0.8">
+    <animateTransform attributeName="transform" type="rotate" from="0 256 256" to="360 256 256" dur="20s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="392" cy="150" r="5" fill="#3B82F6" opacity="0.7">
+    <animateTransform attributeName="transform" type="rotate" from="0 256 256" to="360 256 256" dur="25s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="90" cy="300" r="4" fill="#F59E0B" opacity="0.6">
+    <animateTransform attributeName="transform" type="rotate" from="0 256 256" to="360 256 256" dur="30s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="420" cy="300" r="5" fill="#EC4899" opacity="0.7">
+    <animateTransform attributeName="transform" type="rotate" from="0 256 256" to="360 256 256" dur="22s" repeatCount="indefinite"/>
+  </circle>
+
+</svg>

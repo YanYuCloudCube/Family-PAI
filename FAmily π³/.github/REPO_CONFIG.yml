@@ -1,0 +1,39 @@
+name: FAmily π³ (Family-PAI)
+description: 🏠 AI Family 极致信任智能平台 - 信任如π，始终如一 | MCP协议 · 多智能体协同 · 多模态处理
+url: https://api.yyccube.com
+image: assets/logo.svg
+keywords:
+  - ai-family
+  - family-pai
+  - pai
+  - pi3
+  - mcp
+  - model-context-protocol
+  - ai-agent
+  - multimodal
+  - trust-system
+  - typescript
+  - openai
+  - ollama
+  - anthropic
+  - claude
+license: MIT
+author: FAmily PAI Team <admin@0379.email>
+repository:
+  type: git
+  url: https://github.com/YanYuCloud/Family-AI.git
+  directory: FAmily π³
+bugs:
+  url: https://github.com/YanYuCloud/Family-AI/issues
+homepage: https://api.yyccube.com#readme
+topics:
+  - ai-family
+  - family-pai
+  - pai
+  - pi3
+  - mcp
+  - model-context-protocol
+  - ai-agent
+  - multimodal
+  - trust-system
+  - typescript
