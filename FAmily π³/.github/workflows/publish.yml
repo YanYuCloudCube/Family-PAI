@@ -112,16 +112,16 @@ jobs:
         run: |
           cat > .npmrc << EOF
             //registry.npmjs.org/:_authToken=\${NPM_TOKEN}
-            @claw-ai:registry=https://registry.npmjs.org/
+            @yyc3:registry=https://registry.npmjs.org/
           EOF
 
       - name: Publish to NPM
         run: |
           cd packages/claw-core
-          pnpm publish --access public --no-git-checks
+          pnpm publish --access public --no-git-checks --registry=https://registry.npmjs.org
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.YYC_NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.YYC_NPM_TOKEN }}
 
       - name: Push changes
         run: |
@@ -143,14 +143,14 @@ jobs:
             
             ### 安装方式
             ```bash
-            npm install @claw-ai/core@${{ steps.bump-version.outputs.new_version }}
+            npm install @yyc3/core@${{ steps.bump-version.outputs.new_version }}
             # 或
-            pnpm add @claw-ai/core@${{ steps.bump-version.outputs.new_version }}
+            pnpm add @yyc3/core@${{ steps.bump-version.outputs.new_version }}
             ```
             
             ---
             
-            > 此版本由 🤖 YYC³ Claw AI 自动发布
+            > 此版本由 🏠 FAmily π³ 自动发布
           draft: false
           prerelease: ${{ github.event.inputs.prerelease == 'true' }}
         env:
@@ -161,5 +161,5 @@ jobs:
           echo "## ✅ 发布成功!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- **版本**: v${{ steps.bump-version.outputs.new_version }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **NPM包**: [@claw-ai/core@${{ steps.bump-version.outputs.new_version }}](https://www.npmjs.com/package/@claw-ai/core/v/${{ steps.bump-version.outputs.new_version }})" >> $GITHUB_STEP_SUMMARY
+          echo "- **NPM包**: [@yyc3/core@${{ steps.bump-version.outputs.new_version }}](https://www.npmjs.com/package/@yyc3/core/v/${{ steps.bump-version.outputs.new_version }})" >> $GITHUB_STEP_SUMMARY
           echo "- **预发布**: ${{ github.event.inputs.prerelease }}" >> $GITHUB_STEP_SUMMARY
