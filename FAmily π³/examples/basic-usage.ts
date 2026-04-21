@@ -5,7 +5,7 @@
  * @author FAmily PAI Team
  */
 
-import { UnifiedAuthManager, SkillManager, MCPClient } from '@family-pai/core'
+import { UnifiedAuthManager, SkillManager, MCPClient } from '@yyc3/core'
 
 /**
  * 示例 1: 基础聊天

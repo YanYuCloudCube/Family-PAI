@@ -1,8 +1,8 @@
 /**
  * @file React 集成示例
- * @description 展示如何在 React 应用中使用 Claw Web UI
+ * @description 展示如何在 React 应用中使用 FAmily π³ Web UI
  * @module examples
- * @author YYC
+ * @author FAmily PAI Team
  */
 
 import React from 'react'
