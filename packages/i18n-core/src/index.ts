@@ -1,6 +1,6 @@
 /**
  * @fileoverview YYC³ i18n Core - Production-Ready Internationalization Framework
- * @version 2.2.0
+ * @version 2.3.0
  * @author YYC³ AI Team <yyc3@family.ai>
  * @license MIT
  * @see https://github.com/YanYuCloudCube/Family-PAI
