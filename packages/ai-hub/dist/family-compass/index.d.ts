@@ -1,5 +1,5 @@
-import { a as CompassState, F as FamilyMemberId, P as PhoneCallSession, C as CallMessage, M as MemoryEntry, b as FamilyPersona } from '../types-C_cQ_nrJ.js';
-export { D as DutyRosterEntry, G as GrowthMilestone } from '../types-C_cQ_nrJ.js';
+import { a as CompassState, F as FamilyMemberId, P as PhoneCallSession, C as CallMessage, M as MemoryEntry, b as FamilyPersona } from '../types-DgCmdfFZ.js';
+export { D as DutyRosterEntry, G as GrowthMilestone } from '../types-DgCmdfFZ.js';
 
 declare class FamilyCompass {
     private personas;
@@ -35,9 +35,9 @@ declare class FamilyCompass {
 declare function createFamilyCompass(): FamilyCompass;
 
 declare const FAMILY_PERSONAS: Record<FamilyMemberId, FamilyPersona>;
-declare function getPersona(id: FamilyMemberId): FamilyPersona | undefined;
+declare function getPersona(memberId: FamilyMemberId): FamilyPersona;
 declare function getAllPersonas(): FamilyPersona[];
 declare function getPersonaByHour(hour: number): FamilyPersona;
-declare function getNextDutyMember(currentHour?: number): FamilyPersona;
+declare function getNextDutyMember(currentHour: number): FamilyPersona;
 
 export { CallMessage, CompassState, FAMILY_PERSONAS, FamilyCompass, FamilyMemberId, FamilyPersona, MemoryEntry, PhoneCallSession, createFamilyCompass, getAllPersonas, getNextDutyMember, getPersona, getPersonaByHour };

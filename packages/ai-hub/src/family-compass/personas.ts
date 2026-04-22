@@ -724,7 +724,37 @@ export function getPersonaByHour(hour: number): FamilyPersona {
   return FAMILY_PERSONAS.qianxing;
 }
 
+const DUTY_SCHEDULE: Array<{ id: FamilyMemberId; start: number }> = [
+  { id: 'qianxing', start: 6 },
+  { id: 'wanwu', start: 9 },
+  { id: 'xianzhi', start: 11 },
+  { id: 'bole', start: 13.5 },
+  { id: 'tianshu', start: 15.5 },
+  { id: 'shouhu', start: 17.5 },
+  { id: 'zongshi', start: 19.5 },
+  { id: 'lingyun', start: 20.5 },
+];
+
 export function getNextDutyMember(currentHour: number): FamilyPersona {
-  const nextHour = currentHour + 1.5;
-  return getPersonaByHour(nextHour);
+  const normalizedHour = ((currentHour % 24) + 24) % 24;
+  
+  const current = getPersonaByHour(normalizedHour);
+  
+  const nextSlot = DUTY_SCHEDULE.find(slot => slot.start > normalizedHour);
+  
+  if (nextSlot && FAMILY_PERSONAS[nextSlot.id].id !== current.id) {
+    return FAMILY_PERSONAS[nextSlot.id];
+  }
+  
+  const afterNext = DUTY_SCHEDULE.find(slot => slot.start > (nextSlot?.start ?? normalizedHour));
+  if (afterNext) {
+    return FAMILY_PERSONAS[afterNext.id];
+  }
+  
+  const tomorrowFirst = DUTY_SCHEDULE[0];
+  if (FAMILY_PERSONAS[tomorrowFirst.id].id !== current.id) {
+    return FAMILY_PERSONAS[tomorrowFirst.id];
+  }
+  
+  return FAMILY_PERSONAS[DUTY_SCHEDULE[1]?.id ?? 'wanwu'];
 }

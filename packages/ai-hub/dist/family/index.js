@@ -1,9 +1,9 @@
-import { logger } from '../chunk-TTVAEHGF.js';
-import { FAMILY_PERSONAS } from '../chunk-NMFLCH3R.js';
+import { logger } from '../chunk-FIVGA6R4.js';
+import { FAMILY_PERSONAS } from '../chunk-B7SYX63O.js';
 
 /**
  * @preserve YYC³ AI Family Hub
- * @version 1.0.0-beta.1
+ * @version 1.0.0
  * @license MIT
  * @copyright YYC³ AI Team
  * @see https://github.com/yyc3/YYC3-CloudPivot-Intelli-Matrix
@@ -1083,27 +1083,23 @@ var FamilyOrchestrator = class {
     this.members = /* @__PURE__ */ new Map();
     this.activeSessions = /* @__PURE__ */ new Map();
     this.config = {
-      maxActiveMembers: 8,
+      maxActiveMembers: 5,
       defaultCollaborationMode: "hierarchical",
       emotionSensitivity: 0.8
     };
     this.initializeMembers();
   }
   initializeMembers() {
-    const familyMembers = [
+    const coreMembers = [
       new Qianxing(),
       new Wanwu(),
       new Xianzhi(),
-      new Bole(),
-      new Tianshu(),
-      new Shouhu(),
-      new Zongshi(),
-      new Lingyun()
+      new Bole()
     ];
-    for (const member of familyMembers) {
+    for (const member of coreMembers) {
       this.members.set(member.id, member);
     }
-    logger.info(`Family\u521D\u59CB\u5316\u5B8C\u6210\uFF0C\u5171${this.members.size}\u4F4D\u5BB6\u5EAD\u6210\u5458`);
+    logger.info(`Family\u521D\u59CB\u5316\u5B8C\u6210\uFF0C\u5171${this.members.size}\u4F4D\u6210\u5458`);
   }
   async orchestrate(task) {
     const sessionId = `session_${Date.now()}`;

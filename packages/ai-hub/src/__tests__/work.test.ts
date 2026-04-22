@@ -54,7 +54,7 @@ describe('FamilyWorkSystem', () => {
       });
 
       expect(task.assignee).toContain('lingyun');
-      expect(task.assignee).toContain('bole');
+      expect(task.assignee).toContain('qianxing');
     });
 
     it('should accept preferred members override', async () => {
@@ -89,7 +89,7 @@ describe('FamilyWorkSystem', () => {
     it('should suggest for content_creation', () => {
       const members = workSystem.suggestMembersForTask('content_creation' as TaskCategory);
       expect(members).toContain('lingyun');
-      expect(members).toContain('bole');
+      expect(members).toContain('qianxing');
     });
 
     it('should suggest for analysis_research', () => {
@@ -102,13 +102,15 @@ describe('FamilyWorkSystem', () => {
     it('should suggest for development_engineering', () => {
       const members = workSystem.suggestMembersForTask('development_engineering' as TaskCategory);
       expect(members).toContain('zongshi');
-      expect(members).toContain('tianshu');
+      expect(members).toContain('shouhu');
+      expect(members).toContain('qianxing');
     });
 
     it('should suggest for management_decision', () => {
       const members = workSystem.suggestMembersForTask('management_decision' as TaskCategory);
       expect(members).toContain('tianshu');
-      expect(members).toContain('wanwu');
+      expect(members).toContain('bole');
+      expect(members).toContain('xianzhi');
     });
 
     it('should fallback to qianxing for unknown categories', () => {

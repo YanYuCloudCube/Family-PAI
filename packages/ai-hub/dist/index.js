@@ -1,16 +1,16 @@
-import { logger } from './chunk-TTVAEHGF.js';
-export { FamilyCompass, createFamilyCompass } from './chunk-OH7GV7LL.js';
-export { FAMILY_PERSONAS, getAllPersonas, getNextDutyMember, getPersona, getPersonaByHour } from './chunk-NMFLCH3R.js';
-export { createFamilyWorkSystem } from './chunk-MKT63HNH.js';
+import { logger } from './chunk-FIVGA6R4.js';
+export { FamilyCompass, createFamilyCompass } from './chunk-5VCRPFNM.js';
+export { FAMILY_PERSONAS, getAllPersonas, getNextDutyMember, getPersona, getPersonaByHour } from './chunk-B7SYX63O.js';
+export { createFamilyWorkSystem } from './chunk-WOMT74SK.js';
 import OpenAI from 'openai';
-import { z } from 'zod';
 import * as fs from 'fs';
 import * as path from 'path';
+import { z } from 'zod';
 import { spawn } from 'child_process';
 
 /**
  * @preserve YYC³ AI Family Hub
- * @version 1.0.0-beta.1
+ * @version 1.0.0
  * @license MIT
  * @copyright YYC³ AI Team
  * @see https://github.com/yyc3/YYC3-CloudPivot-Intelli-Matrix
@@ -253,6 +253,7 @@ var YYC3Auth = class {
   }
   async initialize() {
     const authType = this.config.authType || "auto";
+    logger.info(`Initializing authentication with type: ${authType}`);
     if (authType === "auto") {
       this.provider = await this.autoDetect();
     } else if (authType === "openai") {
@@ -262,7 +263,26 @@ var YYC3Auth = class {
     } else {
       this.provider = await this.initOllama();
     }
+    logger.info(`Authentication initialized successfully: ${this.provider?.type}`);
     return this.provider;
+  }
+  maskApiKey(apiKey) {
+    if (!apiKey || apiKey.length < 8) return "***";
+    return `${apiKey.slice(0, 4)}...${apiKey.slice(-4)}`;
+  }
+  getOpenAIKey() {
+    const apiKey = this.config.apiKey || process.env.OPENAI_API_KEY;
+    if (apiKey) {
+      logger.debug(`Using OpenAI API Key: ${this.maskApiKey(apiKey)}`);
+    }
+    return apiKey;
+  }
+  getAnthropicKey() {
+    const apiKey = this.config.anthropicApiKey || process.env.ANTHROPIC_API_KEY;
+    if (apiKey) {
+      logger.debug(`Using Anthropic API Key: ${this.maskApiKey(apiKey)}`);
+    }
+    return apiKey;
   }
   async autoDetect() {
     if (process.env.OPENAI_API_KEY || this.config.apiKey) {
@@ -281,7 +301,7 @@ var YYC3Auth = class {
     throw new YYC3Error("AUTH_1001" /* AUTH_NO_PROVIDER */);
   }
   async initOpenAI() {
-    const apiKey = this.config.apiKey || process.env.OPENAI_API_KEY;
+    const apiKey = this.getOpenAIKey();
     if (!apiKey) {
       throw new YYC3Error("AUTH_1002" /* AUTH_OPENAI_KEY_MISSING */);
     }
@@ -297,7 +317,7 @@ var YYC3Auth = class {
     };
   }
   async initAnthropic() {
-    const apiKey = this.config.anthropicApiKey || process.env.ANTHROPIC_API_KEY;
+    const apiKey = this.getAnthropicKey();
     if (!apiKey) {
       throw new YYC3Error("AUTH_1003" /* AUTH_ANTHROPIC_KEY_MISSING */);
     }
@@ -334,125 +354,14 @@ var YYC3Auth = class {
     return this.getProvider().modelMapping[tier];
   }
 };
-var AuthTypeSchema = z.enum(["openai", "ollama", "anthropic", "auto"]);
-var ModelTierSchema = z.enum(["opus", "sonnet", "haiku"]);
-var ModelMappingSchema = z.object({
-  opus: z.string().optional(),
-  sonnet: z.string().optional(),
-  haiku: z.string().optional()
-}).optional();
-var HubConfigSchema = z.object({
-  authType: AuthTypeSchema.optional().default("auto"),
-  apiKey: z.string().min(1, "API Key \u4E0D\u80FD\u4E3A\u7A7A").optional(),
-  ollamaHost: z.string().url("Ollama Host \u5FC5\u987B\u662F\u6709\u6548URL").optional().default("http://localhost:11434"),
-  anthropicApiKey: z.string().min(1, "Anthropic API Key \u4E0D\u80FD\u4E3A\u7A7A").optional(),
-  modelMapping: ModelMappingSchema
-}).strict();
-var PrioritySchema = z.enum(["high", "medium", "low"]);
-var TaskContextSchema = z.object({
-  task: z.string().min(1, "\u4EFB\u52A1\u5185\u5BB9\u4E0D\u80FD\u4E3A\u7A7A").max(1e4, "\u4EFB\u52A1\u5185\u5BB9\u4E0D\u80FD\u8D85\u8FC710000\u5B57\u7B26"),
-  agent: z.string().optional(),
-  skills: z.array(z.string()).max(20, "\u6280\u80FD\u5217\u8868\u4E0D\u80FD\u8D85\u8FC720\u4E2A").optional(),
-  context: z.record(z.any()).optional(),
-  priority: PrioritySchema.optional().default("medium")
-}).strict();
-z.object({
-  success: z.boolean(),
-  output: z.string(),
-  artifacts: z.array(z.string()).optional(),
-  metrics: z.object({
-    tokensUsed: z.number().int().nonnegative(),
-    duration: z.number().int().nonnegative(),
-    agentCalls: z.number().int().nonnegative()
-  }).optional(),
-  errors: z.array(z.string()).optional()
-});
-var AgentDefinitionSchema = z.object({
-  id: z.string().min(1).max(64).regex(/^[a-zA-Z0-9_-]+$/, "ID \u53EA\u5141\u8BB8\u5B57\u6BCD\u3001\u6570\u5B57\u3001\u4E0B\u5212\u7EBF\u3001\u8FDE\u5B57\u7B26"),
-  name: z.string().min(1).max(128),
-  description: z.string().max(1024),
-  model: ModelTierSchema,
-  systemPrompt: z.string().max(5e4, "\u7CFB\u7EDF\u63D0\u793A\u8BCD\u4E0D\u80FD\u8D85\u8FC750000\u5B57\u7B26"),
-  tools: z.array(z.string()).max(50).optional(),
-  skills: z.array(z.string()).max(50).optional(),
-  category: z.string().max(64).optional(),
-  priority: z.number().int().min(0).max(10).optional().default(5)
-}).strict();
-z.object({
-  success: z.boolean(),
-  output: z.string(),
-  tokensUsed: z.number().int().nonnegative().optional(),
-  duration: z.number().int().nonnegative().optional(),
-  errors: z.array(z.string()).optional()
-});
-var SkillTriggerSchema = z.union([
-  z.string().min(1),
-  z.instanceof(RegExp)
-]);
-var SkillDefinitionSchema = z.object({
-  id: z.string().min(1).max(64).regex(/^[a-zA-Z0-9_-]+$/, "ID \u53EA\u5141\u8BB8\u5B57\u6BCD\u3001\u6570\u5B57\u3001\u4E0B\u5212\u7EBF\u3001\u8FDE\u5B57\u7B26"),
-  name: z.string().min(1).max(128),
-  description: z.string().max(512),
-  trigger: SkillTriggerSchema,
-  prompt: z.string().max(2e4, "\u63D0\u793A\u8BCD\u4E0D\u80FD\u8D85\u8FC720000\u5B57\u7B26"),
-  examples: z.array(z.string()).max(10).optional(),
-  category: z.string().max(64).optional()
-}).strict();
-var MCPServerMetadataSchema = z.object({
-  displayName: z.string().max(128).optional(),
-  category: z.string().max(64).optional(),
-  description: z.string().max(512).optional(),
-  vendor: z.string().max(64).optional(),
-  repository: z.string().url().optional()
-}).optional();
-var MCPServerConfigSchema = z.object({
-  command: z.string().min(1, "command \u4E0D\u80FD\u4E3A\u7A7A"),
-  args: z.array(z.string()).max(32).optional(),
-  env: z.record(z.string(), z.string()).optional(),
-  metadata: MCPServerMetadataSchema
-}).strict();
-
-// src/schemas/index.ts
-var ValidationError = class extends Error {
-  code = "SCHEMA_6001";
-  issues;
-  constructor(issues) {
-    super(`YYC\xB3 Schema \u9A8C\u8BC1\u5931\u8D25 (${issues.length} \u4E2A\u9519\u8BEF)`);
-    this.name = "ValidationError";
-    this.issues = issues;
-  }
-};
-function validate(schema, data) {
-  const result = schema.safeParse(data);
-  if (!result.success) {
-    throw new ValidationError(
-      result.error.issues.map((i) => ({
-        path: i.path.map((p) => String(p)).join("."),
-        message: i.message
-      }))
-    );
-  }
-  return result.data;
-}
-function safeValidate(schema, data) {
-  const result = schema.safeParse(data);
-  if (!result.success) {
-    return {
-      success: false,
-      errors: result.error.issues.map((i) => ({
-        path: i.path.map((p) => String(p)).join("."),
-        message: i.message
-      }))
-    };
-  }
-  return { success: true, data: result.data };
-}
 var AgentImpl = class {
   constructor(definition, auth) {
     this.definition = definition;
     this.auth = auth;
     this.id = definition.id;
   }
+  definition;
+  auth;
   id;
   async execute(task, context) {
     const startTime = Date.now();
@@ -511,12 +420,11 @@ var AgentImpl = class {
         tokensUsed: output.length
       };
     } catch (error) {
-      const yyc3Err = YYC3Error.fromError(error, "AGENT_2003" /* AGENT_EXECUTION_FAILED */);
       return {
         success: false,
         output: "",
         duration: Date.now() - startTime,
-        errors: [yyc3Err.message]
+        errors: [error instanceof Error ? error.message : String(error)]
       };
     }
   }
@@ -534,7 +442,7 @@ var AgentManager = class {
   }
   async loadFromPath(p) {
     if (!fs.existsSync(p)) {
-      logger.warn(`Agent\u8DEF\u5F84\u4E0D\u5B58\u5728: ${p}`);
+      console.warn(`Agent\u8DEF\u5F84\u4E0D\u5B58\u5728: ${p}`);
       return;
     }
     const stats = fs.statSync(p);
@@ -552,8 +460,7 @@ var AgentManager = class {
     }
   }
   register(definition) {
-    const validated = validate(AgentDefinitionSchema, definition);
-    this.agents.set(validated.id, new AgentImpl(validated, this.auth));
+    this.agents.set(definition.id, new AgentImpl(definition, this.auth));
   }
   get(id) {
     return this.agents.get(id);
@@ -573,6 +480,7 @@ var SkillImpl = class {
     this.definition = definition;
     this.id = definition.id;
   }
+  definition;
   id;
   async apply(context) {
     return `${this.definition.prompt}
@@ -596,7 +504,7 @@ var SkillManager = class {
   }
   async loadFromPath(p) {
     if (!fs.existsSync(p)) {
-      logger.warn(`Skill\u8DEF\u5F84\u4E0D\u5B58\u5728: ${p}`);
+      console.warn(`Skill\u8DEF\u5F84\u4E0D\u5B58\u5728: ${p}`);
       return;
     }
     const stats = fs.statSync(p);
@@ -627,8 +535,7 @@ var SkillManager = class {
     };
   }
   register(definition) {
-    const validated = validate(SkillDefinitionSchema, definition);
-    this.skills.set(validated.id, new SkillImpl(validated));
+    this.skills.set(definition.id, new SkillImpl(definition));
   }
   get(id) {
     return this.skills.get(id);
@@ -643,11 +550,49 @@ var SkillManager = class {
     return this.skills.size;
   }
 };
+var MCPServerMetadataSchema = z.object({
+  displayName: z.string().max(128).optional(),
+  category: z.string().max(64).optional(),
+  description: z.string().max(512).optional(),
+  vendor: z.string().max(64).optional(),
+  repository: z.string().url().optional()
+}).optional();
+var MCPServerConfigSchema = z.object({
+  command: z.string().min(1, "command \u4E0D\u80FD\u4E3A\u7A7A"),
+  args: z.array(z.string()).max(32).optional(),
+  env: z.record(z.string(), z.string()).optional(),
+  metadata: MCPServerMetadataSchema
+}).strict();
+
+// src/schemas/index.ts
+var ValidationError = class extends Error {
+  code = "SCHEMA_6001";
+  issues;
+  constructor(issues) {
+    super(`YYC\xB3 Schema \u9A8C\u8BC1\u5931\u8D25 (${issues.length} \u4E2A\u9519\u8BEF)`);
+    this.name = "ValidationError";
+    this.issues = issues;
+  }
+};
+function validate(schema, data) {
+  const result = schema.safeParse(data);
+  if (!result.success) {
+    throw new ValidationError(
+      result.error.issues.map((i) => ({
+        path: i.path.map((p) => String(p)).join("."),
+        message: i.message
+      }))
+    );
+  }
+  return result.data;
+}
 var MCPServerImpl = class {
   constructor(id, config) {
     this.id = id;
     this.config = config;
   }
+  id;
+  config;
   process;
   status = "stopped";
   async start() {
@@ -741,15 +686,12 @@ var MCPManager = class {
 var YYC3AIHub = class {
   constructor(config = {}) {
     this.config = config;
-    const validated = safeValidate(HubConfigSchema, config);
-    if (!validated.success) {
-      logger.warn(`HubConfig \u9A8C\u8BC1\u8B66\u544A: ${validated.errors.length} \u4E2A\u5B57\u6BB5\u5F02\u5E38\uFF0C\u4F7F\u7528\u9ED8\u8BA4\u503C`);
-    }
-    this.auth = new YYC3Auth(validated.success ? validated.data : config);
+    this.auth = new YYC3Auth(config);
     this.agents = new AgentManager(this.auth);
     this.skills = new SkillManager();
     this.mcp = new MCPManager();
   }
+  config;
   auth;
   agents;
   skills;
@@ -782,15 +724,6 @@ var YYC3AIHub = class {
     if (!this.initialized) {
       await this.initialize();
     }
-    const ctxValidation = safeValidate(TaskContextSchema, { ...options, task });
-    if (!ctxValidation.success) {
-      return {
-        success: false,
-        output: "",
-        errors: ctxValidation.errors.map((e) => `[${e.path}] ${e.message}`),
-        metrics: { tokensUsed: 0, duration: 0, agentCalls: 0 }
-      };
-    }
     const startTime = Date.now();
     try {
       const context = await this.analyzeContext(task);
@@ -806,11 +739,10 @@ var YYC3AIHub = class {
         }
       };
     } catch (error) {
-      const yyc3Err = YYC3Error.fromError(error, "HUB_5002" /* HUB_EXECUTE_FAILED */);
       return {
         success: false,
         output: "",
-        errors: [yyc3Err.message],
+        errors: [error instanceof Error ? error.message : String(error)],
         metrics: {
           tokensUsed: 0,
           duration: Date.now() - startTime,

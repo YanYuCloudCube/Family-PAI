@@ -1,8 +1,8 @@
-import { FAMILY_PERSONAS, getPersonaByHour, getNextDutyMember } from './chunk-NMFLCH3R.js';
+import { FAMILY_PERSONAS, getPersonaByHour, getNextDutyMember } from './chunk-B7SYX63O.js';
 
 /**
  * @preserve YYC³ AI Family Hub
- * @version 1.0.0-beta.1
+ * @version 1.0.0
  * @license MIT
  * @copyright YYC³ AI Team
  * @see https://github.com/yyc3/YYC3-CloudPivot-Intelli-Matrix
@@ -385,5 +385,5 @@ function createFamilyCompass() {
 }
 
 export { FamilyCompass, createFamilyCompass };
-//# sourceMappingURL=chunk-OH7GV7LL.js.map
-//# sourceMappingURL=chunk-OH7GV7LL.js.map
+//# sourceMappingURL=chunk-5VCRPFNM.js.map
+//# sourceMappingURL=chunk-5VCRPFNM.js.map

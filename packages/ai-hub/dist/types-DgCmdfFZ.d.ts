@@ -17,7 +17,7 @@ interface FamilyPersona {
     };
     personality: {
         mbti: string;
-        role: string;
+        temperament: string;
         traits: string[];
         values: string[];
         quirks: string[];

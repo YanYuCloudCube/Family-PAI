@@ -40,13 +40,20 @@ describe('Family Compass - Personas', () => {
     }
   });
 
-  it('getNextDutyMember should rotate through members', () => {
-    const next1 = getNextDutyMember(6);
-    const next2 = getNextDutyMember(7.5);
-    expect(next1).toBeDefined();
-    expect(next2).toBeDefined();
-    if (next1 && next2) {
-      expect(next1.id).not.toBe(next2.id);
+  it('getNextDutyMember should return next scheduled member', () => {
+    const at6 = getNextDutyMember(6);
+    const at8 = getNextDutyMember(8);
+    expect(at6).toBeDefined();
+    expect(at8).toBeDefined();
+    if (at6 && at8) {
+      expect(at6.id).toBe('wanwu');
+      expect(at8.id).toBe('wanwu');
     }
+    
+    const at9 = getNextDutyMember(9);
+    expect(at9?.id).toBe('xianzhi');
+    
+    const at21 = getNextDutyMember(21);
+    expect(at21?.id).toBe('qianxing');
   });
 });

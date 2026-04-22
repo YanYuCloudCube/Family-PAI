@@ -1,6 +1,6 @@
 /**
  * @preserve YYC³ AI Family Hub
- * @version 1.0.0-beta.1
+ * @version 1.0.0
  * @license MIT
  * @copyright YYC³ AI Team
  * @see https://github.com/yyc3/YYC3-CloudPivot-Intelli-Matrix
@@ -407,8 +407,12 @@ var CollaborationEngine = class {
 // src/work/trust-system.ts
 var TrustSystem = class {
   trustRecords;
-  constructor() {
+  accessOrder = [];
+  maxRecords;
+  maxHistoryPerRecord = 100;
+  constructor(maxRecords = 1e4) {
     this.trustRecords = /* @__PURE__ */ new Map();
+    this.maxRecords = maxRecords;
   }
   getTrustLevel(userId, memberId) {
     const record = this.trustRecords.get(`${userId}-${memberId}`);
@@ -416,6 +420,10 @@ var TrustSystem = class {
   }
   recordTrustEvent(userId, memberId, event) {
     const key = `${userId}-${memberId}`;
+    this.updateAccessOrder(key);
+    if (this.trustRecords.size >= this.maxRecords) {
+      this.evictOldestRecord();
+    }
     let record = this.trustRecords.get(key);
     if (!record) {
       record = {
@@ -432,8 +440,24 @@ var TrustSystem = class {
       timestamp: /* @__PURE__ */ new Date()
     };
     record.history.push(trustEvent);
+    if (record.history.length > this.maxHistoryPerRecord) {
+      record.history = record.history.slice(-this.maxHistoryPerRecord);
+    }
     this.recalculateTrustLevel(record);
     record.lastUpdated = /* @__PURE__ */ new Date();
+  }
+  updateAccessOrder(key) {
+    const index = this.accessOrder.indexOf(key);
+    if (index !== -1) {
+      this.accessOrder.splice(index, 1);
+    }
+    this.accessOrder.push(key);
+  }
+  evictOldestRecord() {
+    const oldestKey = this.accessOrder.shift();
+    if (oldestKey && this.trustRecords.has(oldestKey)) {
+      this.trustRecords.delete(oldestKey);
+    }
   }
   recalculateTrustLevel(record) {
     const recentEvents = record.history.slice(-50);
@@ -534,16 +558,16 @@ var FamilyWorkSystem = class {
   }
   suggestMembersForTask(category) {
     const suggestions = {
-      content_creation: ["lingyun", "bole", "wanwu"],
+      content_creation: ["lingyun", "qianxing"],
       analysis_research: ["wanwu", "xianzhi", "zongshi"],
-      development_engineering: ["zongshi", "tianshu", "shouhu"],
-      management_decision: ["tianshu", "wanwu", "xianzhi"],
-      personal_growth: ["bole", "qianxing", "zongshi"],
-      security_auditing: ["shouhu", "zongshi"],
-      ux_design: ["lingyun", "bole"],
-      product_management: ["tianshu", "bole", "wanwu"]
+      development_engineering: ["zongshi", "shouhu", "qianxing"],
+      management_decision: ["tianshu", "bole", "xianzhi"],
+      personal_growth: ["bole", "qianxing", "wanwu"],
+      security_auditing: ["shouhu", "xianzhi"],
+      ux_design: ["lingyun", "wanwu"],
+      product_management: ["tianshu", "bole"]
     };
-    return suggestions[category] || ["qianxing", "wanwu"];
+    return suggestions[category] || ["qianxing"];
   }
   getDashboardData(userId) {
     const summary = this.taskManager.getDashboardSummary();
@@ -594,5 +618,5 @@ function createFamilyWorkSystem() {
 }
 
 export { FamilyWorkSystem, createFamilyWorkSystem };
-//# sourceMappingURL=chunk-MKT63HNH.js.map
-//# sourceMappingURL=chunk-MKT63HNH.js.map
+//# sourceMappingURL=chunk-WOMT74SK.js.map
+//# sourceMappingURL=chunk-WOMT74SK.js.map

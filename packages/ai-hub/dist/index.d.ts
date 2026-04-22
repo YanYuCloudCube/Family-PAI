@@ -1,8 +1,8 @@
 import OpenAI from 'openai';
 import { ChildProcess } from 'child_process';
 export { FAMILY_PERSONAS, FamilyCompass, createFamilyCompass, getAllPersonas, getNextDutyMember, getPersona, getPersonaByHour } from './family-compass/index.js';
-export { C as CallMessage, a as CompassState, D as DutyRosterEntry, F as FamilyMemberId, b as FamilyPersona, G as GrowthMilestone, M as MemoryEntry, P as PhoneCallSession } from './types-C_cQ_nrJ.js';
-export { A as ActivityFeedItem, a as Attachment, C as CollaborationMemberState, b as CollaborationMessage, c as CollaborationMode, d as CollaborationSession, e as Comment, F as FamilyMemberWorkProfile, f as FamilyWorkSystem, T as Task, g as TaskCategory, h as TaskPriority, i as TaskStatus, j as TrustEvent, k as TrustLevel, l as TrustRecord, W as WorkDashboardData, m as WorkLogEntry, n as WorkStatus, o as createFamilyWorkSystem } from './index-C2D_jJtD.js';
+export { C as CallMessage, a as CompassState, D as DutyRosterEntry, F as FamilyMemberId, b as FamilyPersona, G as GrowthMilestone, M as MemoryEntry, P as PhoneCallSession } from './types-DgCmdfFZ.js';
+export { A as ActivityFeedItem, a as Attachment, C as CollaborationMemberState, b as CollaborationMessage, c as CollaborationMode, d as CollaborationSession, e as Comment, F as FamilyMemberWorkProfile, f as FamilyWorkSystem, T as Task, g as TaskCategory, h as TaskPriority, i as TaskStatus, j as TrustEvent, k as TrustLevel, l as TrustRecord, W as WorkDashboardData, m as WorkLogEntry, n as WorkStatus, o as createFamilyWorkSystem } from './index-5BKIaVzD.js';
 
 /**
  * @file YYC³ AI Hub 类型定义
@@ -111,6 +111,9 @@ declare class YYC3Auth {
     private provider;
     constructor(config?: HubConfig);
     initialize(): Promise<AuthProvider>;
+    private maskApiKey;
+    private getOpenAIKey;
+    private getAnthropicKey;
     private autoDetect;
     private initOpenAI;
     private initAnthropic;

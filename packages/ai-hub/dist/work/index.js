@@ -1,3 +1,3 @@
-export { FamilyWorkSystem, createFamilyWorkSystem } from '../chunk-MKT63HNH.js';
+export { FamilyWorkSystem, createFamilyWorkSystem } from '../chunk-WOMT74SK.js';
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

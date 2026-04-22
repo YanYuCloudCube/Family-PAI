@@ -1,6 +1,6 @@
 /**
  * @preserve YYC³ AI Family Hub
- * @version 1.0.0-beta.1
+ * @version 1.0.0
  * @license MIT
  * @copyright YYC³ AI Team
  * @see https://github.com/yyc3/YYC3-CloudPivot-Intelli-Matrix
@@ -10,6 +10,9 @@
 // src/logger.ts
 var DEBUG = typeof process !== "undefined" && process.env?.["YYC3_DEBUG"] === "true";
 var logger = {
+  debug: (...args) => {
+    if (DEBUG) console.debug("[YYC3:DEBUG]", ...args);
+  },
   info: (...args) => {
     if (DEBUG) console.info("[YYC3]", ...args);
   },
@@ -32,5 +35,5 @@ var logger = {
 };
 
 export { logger };
-//# sourceMappingURL=chunk-TTVAEHGF.js.map
-//# sourceMappingURL=chunk-TTVAEHGF.js.map
+//# sourceMappingURL=chunk-FIVGA6R4.js.map
+//# sourceMappingURL=chunk-FIVGA6R4.js.map

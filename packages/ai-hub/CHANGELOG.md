@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - 家庭编排器 (FamilyOrchestrator)
   - 情感智能系统 (EmotionalIntelligence)
   - 个人成长系统 (GrowthSystem)
-  - 八位家人独立实现（千行/万物/先知/伯乐/天书/守卫/宗师/凌云）
+  - 八位家人独立实现（千行/万物/先知/伯乐/天枢/守护/宗师/灵韵）
 
 - **工作协作引擎**
   - 任务生命周期管理（创建→分配→执行→验证→完成）

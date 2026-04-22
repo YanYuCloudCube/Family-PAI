@@ -206,9 +206,14 @@ declare class CollaborationEngine {
 
 declare class TrustSystem {
     private trustRecords;
-    constructor();
+    private accessOrder;
+    private readonly maxRecords;
+    private readonly maxHistoryPerRecord;
+    constructor(maxRecords?: number);
     getTrustLevel(userId: string, memberId: string): TrustLevel;
     recordTrustEvent(userId: string, memberId: string, event: Omit<TrustEvent, 'timestamp'>): void;
+    private updateAccessOrder;
+    private evictOldestRecord;
     private recalculateTrustLevel;
     getTrustPermissions(level: TrustLevel): string[];
     getMemberTrustSummary(memberId: string): {
