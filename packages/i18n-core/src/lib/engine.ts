@@ -98,7 +98,7 @@ export class I18nEngine {
     if (!storage) return null;
 
     try {
-      return storage.getItem("openclaw.i18n.locale");
+      return storage.getItem("yyc3.i18n.locale");
     } catch {
       return null;
     }
@@ -109,7 +109,7 @@ export class I18nEngine {
     if (!storage) return;
 
     try {
-      storage.setItem("openclaw.i18n.locale", locale);
+      storage.setItem("yyc3.i18n.locale", locale);
     } catch {
       // Ignore storage failures in private/blocked contexts
     }
