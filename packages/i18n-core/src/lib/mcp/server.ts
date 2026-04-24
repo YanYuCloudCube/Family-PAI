@@ -1,13 +1,19 @@
 /**
- * @file mcp/server.ts
- * @description MCP Server implementation for i18n-core
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.1.0
+ * file server.ts
+ * description MCP 服务端实现
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[mcp]
  *
- * Design adapted from FAmily π³ MCPClient (symmetric transformation).
- * Zero runtime dependencies beyond transport interface.
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief MCP 服务端实现
  */
-
 import { logger } from "../infra/logger.js";
 import type {
   MCPMessage,

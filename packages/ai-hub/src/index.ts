@@ -1,11 +1,19 @@
 /**
- * @file YYC³ AI Hub 入口
- * @description 导出认证、MCP、技能系统、AI Family核心模块
- * @module @yyc3/ai-hub
- * @author YYC³ AI Team
- * @version 1.0.0
+ * file index.ts
+ * description @yyc3/ai-hub 模块入口
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [config]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/ai-hub 模块入口
  */
-
 export { YYC3AIHub } from './hub.js';
 export { YYC3Auth } from './auth.js';
 export type { AuthProvider, AuthType } from './auth.js';

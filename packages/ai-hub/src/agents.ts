@@ -1,11 +1,19 @@
 /**
- * @file YYC³ Agent 管理器
- * @description 管理 112+ 专业 AI Agent
- * @module @yyc3/ai-hub/agents
- * @author YYC³ AI Team
- * @version 1.0.0
+ * file agents.ts
+ * description Agent 管理实现
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief Agent 管理实现
  */
-
 import { AgentDefinition, TaskContext, AgentExecutionResult } from './types.js';
 import { YYC3Auth } from './auth.js';
 import * as fs from 'fs';

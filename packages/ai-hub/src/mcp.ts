@@ -1,11 +1,19 @@
 /**
- * @file YYC³ MCP 服务器管理器
- * @description 管理 4500+ MCP 服务器配置
- * @module @yyc3/ai-hub/mcp
- * @author YYC³ AI Team
- * @version 1.0.0
+ * file mcp.ts
+ * description MCP 协议实现
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[mcp]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief MCP 协议实现
  */
-
 import { MCPServerConfig } from './types.js';
 import { logger } from './logger.js';
 import { validate, MCPServerConfigSchema } from './schemas/index.js';

@@ -1,171 +1,276 @@
-# Contributing to Claude Prompts MCP (Canonical)
+# 🤝 YYC³ FAmily π³ 贡献指南
 
-Thank you for helping maintain the Claude Prompts MCP server. This guide consolidates our contributor expectations, operational workflows, and automation guardrails. It replaces older scattered docs (`docs/contributing.md`, legacy READMEs) so please keep it up to date whenever workflows change.
+感谢你对 YYC³ AI Family 项目的关注！本文档描述了如何为项目做出贡献。
 
-## 1. Development Environment
+---
 
-- **Node.js**: 16/18/20 supported. Use the version defined in `.nvmrc` (if present) or match CI.
-- **npm**: Comes with Node; ensure `npm install` runs inside `server/`.
-- **Git**: Required for Husky hooks and for keeping runtime-state files out of commits.
+## 目录
+
+- [行为准则](#行为准则)
+- [如何贡献](#如何贡献)
+- [开发环境设置](#开发环境设置)
+- [代码规范](#代码规范)
+- [提交规范](#提交规范)
+- [Pull Request 流程](#pull-request-流程)
+- [Issue 报告](#issue-报告)
+
+---
+
+## 行为准则
+
+- 尊重所有贡献者
+- 建设性的讨论和反馈
+- 遵循 MIT 开源精神
+
+---
+
+## 如何贡献
+
+### 报告 Bug
+
+1. 在 [GitHub Issues](https://github.com/YanYuCloudCube/Family-PAI/issues) 搜索是否已有相同问题
+2. 如无，创建新 Issue，包含：
+   - 清晰的标题和描述
+   - 复现步骤
+   - 期望行为 vs 实际行为
+   - 环境信息（Node.js 版本、操作系统等）
+
+### 提交功能请求
+
+1. 在 Issues 中描述你的需求
+2. 说明使用场景和预期收益
+3. 等待维护者反馈后再开始开发
+
+### 提交代码
+
+1. Fork 仓库
+2. 创建功能分支
+3. 编写代码和测试
+4. 提交 Pull Request
+
+---
+
+## 开发环境设置
+
+### 前置要求
+
+- Node.js >= 18.0.0
+- pnpm >= 8.0.0
+- Git
+
+### 安装步骤
 
 ```bash
-git clone https://github.com/minipuft/claude-prompts-mcp.git
-cd claude-prompts-mcp/server
-npm install
-npm run build
+git clone https://github.com/YanYuCloudCube/Family-PAI.git
+cd Family-PAI
+pnpm install
 ```
 
-## 2. Repo Structure (server/dist is the runtime contract)
+### 开发命令
 
-```
-repo/
-├── server/
-│   ├── src/            # TypeScript sources
-│   ├── dist/           # Compiled runtime (reference for docs + MCP clients)
-│   ├── prompts/        # Prompt registry and markdown templates
-│   ├── config.json     # Runtime configuration
-│   └── package.json    # Scripts + dependencies
-├── docs/               # Canonical documentation set
-├── plans/              # Living migration plans + guardrails
-└── CONTRIBUTING.md     # This file
+```bash
+pnpm -r build          # 构建所有包
+pnpm -r test           # 测试所有包
+pnpm -r typecheck      # 类型检查所有包
+pnpm -r lint           # Lint 检查所有包
+pnpm -C packages/core dev  # 开发单个包（监听模式）
 ```
 
-Whenever you touch runtime behavior, inspect `server/dist/**` to confirm the emitted output matches your expectations.
+---
 
-## 3. Git Hooks (Husky + lint-staged)
+## 代码规范
 
-Hooks auto-install via the `prepare` script the first time you run `npm install` inside `server/`.
+### TypeScript
 
-### Pre-commit
+- 启用 `strict` 模式
+- 禁止使用 `any`（除非 `@ts-expect-error` 注释说明原因）
+- 公共 API 必须有完整的类型定义和 JSDoc 注释
 
-Runs on staged files:
-1. `eslint --fix`
-2. `prettier --write`
-3. `npm run typecheck`
+### 命名约定
 
-Commits are blocked if linting/formatting/type checks fail. Expect staged files to be modified automatically.
+| 类型 | 风格 | 示例 |
+|------|------|------|
+| 包名 | kebab-case | `@yyc3/ai-hub` |
+| 文件名 | kebab-case | `task-manager.ts` |
+| 类/接口 | PascalCase | `AIFamilyManager` |
+| 函数/方法 | camelCase | `executeTask()` |
+| 常量 | UPPER_SNAKE_CASE | `MAX_RETRY_COUNT` |
 
-### Pre-push
+### 代码标头
 
-Runs before every `git push` over the entire workspace:
-1. `npm run typecheck`
-2. `npm run lint`
-3. `npm run format`
-4. `npm run test:jest`
-5. `npm run validate:all`
+所有源码文件必须包含统一 JSDoc 标头：
 
-Pushes are blocked if any command fails. This keeps CI and local environments aligned.
-
-### Emergency Bypass
-
-Only bypass hooks to unblock CI or for emergency hotfixes. Use `HUSKY=0 git commit` or `HUSKY=0 git push`, then open a follow-up issue documenting why the bypass was required.
-
-## 4. Available Scripts (run inside `server/`)
-
-| Command | Description |
-| --- | --- |
-| `npm run build` | Compile TypeScript to `dist/`. |
-| `npm run typecheck` | Strict TypeScript checks without emit. |
-| `npm run lint` / `lint:fix` | ESLint validation + autofix. |
-| `npm run format` / `format:fix` | Prettier checks/auto-format. |
-| `npm run validate:all` | Dependency + architecture validation. |
-| `npm test` / `npm run test:jest` | Jest suite (unit + integration). |
-| `npm run start:stdio` / `start:sse` | Launch transports for manual testing. |
-
-## 5. Contribution Workflow
-
-1. Create a descriptive branch.
-2. Make focused, reversible changes; respect prompts/tool guardrails from `AGENTS.md`.
-3. Run tests/validations that match the area you touched (execution, gates, docs, etc.).
-4. Update relevant docs (`docs/mcp-tools.md`, `docs/troubleshooting.md`, etc.).
-5. Stage changes and let hooks run.
-6. Open a pull request with context, validation proof, and links to related plans/issues.
-
-## 6. Coding Guidelines
-
-- **TypeScript**: Strict mode, descriptive interfaces, prefer dependency injection over global state.
-- **Runtime lifecycle**: Register new modules through the `Application` orchestrator (`server/src/runtime/`).
-- **Transports**: Keep STDIO and SSE behavior in parity; mention both when updating docs.
-- **Prompts**: Only modify via `prompt_manager`. See `docs/prompt-authoring-guide.md` for schema expectations.
-- **Chains**: Define/edit steps via `prompt_manager`. Reference `docs/chains.md` for schema details.
-- **Gates**: Add definitions under `server/gates/{id}/gate.yaml` and update `docs/gates.md` when behavior changes.
-
-### Pipeline State Management Patterns
-
-When modifying pipeline stages (`server/src/execution/pipeline/stages/`), use the centralized state management:
-
-**For Gates**: Use `context.gates` accumulator instead of direct array manipulation:
 ```typescript
-// ✅ Correct: Use accumulator with source tracking
-context.gates.add('research-quality', 'registry-auto');
-context.gates.addAll(methodologyGates, 'methodology');
-const finalGates = context.gates.getAll();
-
-// ❌ Wrong: Direct array mutation
-gateIds.push(...newGates);
+/**
+ * file {文件名}
+ * description {一句话描述}
+ * module {@yyc3/xxx}
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version {x.y.z}
+ * created {YYYY-MM-DD}
+ * updated {YYYY-MM-DD}
+ * status active
+ * tags [标签1],[标签2]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief {简要说明}
+ */
 ```
 
-**For Framework Decisions**: Use `context.frameworkAuthority` instead of resolving framework ID manually:
-```typescript
-// ✅ Correct: Use authority for consistent resolution
-const decisionInput = {
-  modifiers: context.executionPlan?.modifiers,
-  operatorOverride: context.parsedCommand?.executionPlan?.frameworkOverride,
-  clientOverride: context.state.framework.clientOverride,
-  globalActiveFramework: context.frameworkContext?.selectedFramework?.id,
-};
-const decision = context.frameworkAuthority.decide(decisionInput);
-if (decision.shouldApply) {
-  const frameworkId = decision.frameworkId; // lowercase
-}
+### 文件大小
 
-// ❌ Wrong: Manual resolution in each stage
-const frameworkId = context.state.framework.clientOverride ??
-  context.parsedCommand?.executionPlan?.frameworkOverride;
+- 单文件不超过 500 行（不含注释和空行）
+- 超过时拆分为多个模块
+
+---
+
+## 提交规范
+
+遵循 [Conventional Commits](https://www.conventionalcommits.org/) 格式：
+
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
 ```
 
-**For Diagnostics**: Use `context.diagnostics` for audit trail:
-```typescript
-context.diagnostics.info(this.name, 'Stage completed', { key: value });
-context.diagnostics.warn(this.name, 'Potential issue', { details });
+### Type 类型
+
+| Type | 说明 | 示例 |
+|------|------|------|
+| `feat` | 新功能 | `feat(core): add streaming support` |
+| `fix` | Bug 修复 | `fix(auth): correct token refresh logic` |
+| `docs` | 文档更新 | `docs(readme): update installation guide` |
+| `style` | 代码格式 | `style: fix indentation` |
+| `refactor` | 重构 | `refactor(mcp): simplify transport layer` |
+| `perf` | 性能优化 | `perf(cache): reduce memory footprint` |
+| `test` | 测试相关 | `test(skills): add edge case tests` |
+| `chore` | 构建/工具 | `chore: upgrade TypeScript to 5.4` |
+
+### Scope 范围
+
+| Scope | 对应包 |
+|-------|--------|
+| `core` | @yyc3/core |
+| `ai-hub` | @yyc3/ai-hub |
+| `ui` | @yyc3/ui |
+| `plugins` | @yyc3/plugins |
+| `i18n` | @yyc3/i18n-core |
+| `root` | 根配置 |
+
+---
+
+## Pull Request 流程
+
+### 提交前检查
+
+- [ ] 所有测试通过 (`pnpm -r test`)
+- [ ] 类型检查通过 (`pnpm -r typecheck`)
+- [ ] Lint 检查通过 (`pnpm -r lint`)
+- [ ] 构建成功 (`pnpm -r build`)
+- [ ] CHANGELOG.md 已更新（如适用）
+- [ ] 新功能有对应的测试用例
+- [ ] 公共 API 有 JSDoc 注释
+
+### PR 标题格式
+
+```
+<type>(<scope>): <description>
 ```
 
-See `docs/architecture.md#pipeline-state-management` for detailed documentation.
+示例：`feat(ui): add AgentStatus component`
 
-## 7. Testing Expectations
+### PR 描述模板
 
-- **Server code**: `npm run typecheck && npm test && npm run validate:all`.
-- **Transport/runtime changes**: Add targeted smoke tests (`npm run start:stdio` or `npm run start:sse`) and note results in PRs.
-- **Prompt/tool changes**: Execute via MCP tools (`prompt_engine`, `prompt_manager`, `system_control`). Link output or describe validation steps.
-- **Documentation-only changes**: Verify references against `server/dist/**`. If commands/scripts are mentioned, ensure they exist.
+```markdown
+## 变更摘要
+简要描述本次变更的内容和目的。
 
-## 8. Documentation & Plans
+## 变更类型
+- [ ] feat: 新功能
+- [ ] fix: Bug 修复
+- [ ] docs: 文档更新
+- [ ] refactor: 重构
+- [ ] perf: 性能优化
+- [ ] test: 测试
+- [ ] chore: 构建/工具
 
-- All docs now live under `docs/` with lifecycle tags (canonical, migrating, legacy). Consult `plans/docs-migration-plan.md` before creating new files.
-- Update docs in the same change set as the code; avoid TODO piles.
-- Long-running migrations belong in `plans/*.md` with checklists and blockers for the next contributor.
+## 测试
+描述如何测试本次变更。
 
-## 9. Prompt & Template Contributions
+## 检查清单
+- [ ] 测试通过
+- [ ] 类型检查通过
+- [ ] Lint 通过
+- [ ] 文档已更新
+```
 
-- Use `prompt_manager` (`create`, `update`, `delete`, `reload`) for every change.
-- Document complex prompts/chains inside Markdown files and cross-reference the relevant doc (authoring guide or chain workflows).
-- Provide argument metadata (types + validation) so the runtime schema remains accurate.
+### 审查流程
 
-## 10. Security & Dependency Hygiene
+1. 自动化检查（CI）必须通过
+2. 至少一位维护者审查
+3. 解决所有审查意见
+4. 维护者合并
 
-- Run `npm audit:check` when bumping dependencies; fix or document high/critical issues immediately.
-- Keep `.husky/`, `.lintstagedrc.json`, `.prettierrc.json`, and ESLint configs in sync when updating lint rules.
-- Never check in secrets; use environment variables for API keys (LLM integrations, etc.).
+---
 
-## 11. Transport-Agnostic Development
+## Issue 报告
 
-- Avoid STDIO-specific assumptions in prompts or code (e.g., `console.log` inside STDIO loops).
-- SSE endpoints should expose equivalent functionality to STDIO flows. When adding a transport-specific feature, update `docs/architecture.md` with testing instructions.
+### Bug 报告模板
 
-## 12. Getting Help
+```markdown
+**描述**: 清晰描述问题
 
-- Review `AGENTS.md` for automation rules.
-- Check `plans/` for ongoing migrations before touching a subsystem.
-- If hooks or scripts fail unexpectedly, inspect `server/logs/` and `runtime-state/` for details, then document findings in your PR.
+**复现步骤**:
+1. ...
+2. ...
 
-Thank you for keeping this guide current. If anything in here becomes outdated, fix it alongside your change so future contributors avoid drift.
+**期望行为**: ...
+
+**实际行为**: ...
+
+**环境**:
+- OS:
+- Node.js:
+- 包版本:
+```
+
+### Feature Request 模板
+
+```markdown
+**需求描述**: ...
+
+**使用场景**: ...
+
+**建议方案**: ...
+
+**替代方案**: ...
+```
+
+---
+
+## 包文档标准
+
+每个包必须包含以下 5 类文档（闭环五件套）：
+
+| 文件 | 用途 | 格式 |
+|------|------|------|
+| `README.md` | 使用指导 | Markdown |
+| `CHANGELOG.md` | 版本变更记录 | Keep a Changelog |
+| `MAINTENANCE.md` | 维护指南 | Markdown |
+| `LICENSE` | 开源许可证 | MIT |
+| `COMPLIANCE.md` | 合规达标报告 | YAML front matter + 表格 |
+
+---
+
+<div align="center">
+
+**感谢你的贡献！**
+
+**© 2025-2026 YanYuCloudCube Team. All Rights Reserved.**
+
+</div>

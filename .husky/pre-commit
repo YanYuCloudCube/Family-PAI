@@ -1,12 +1,22 @@
 #!/usr/bin/env sh
 
-# Navigate to server directory and run lint-staged
-cd server && npx lint-staged
+echo "🔍 Running pre-commit checks..."
 
-# Check exit status and provide feedback
-if [ $? -ne 0 ]; then
-  echo ""
-  echo "⚠️  Pre-commit checks found issues."
-  echo "Review the changes above and confirm if you want to proceed with the commit."
-  exit 1
+CHANGED=$(git diff --cached --name-only --diff-filter=ACM | grep "^packages/" | cut -d'/' -f2 | sort -u)
+
+if [ -z "$CHANGED" ]; then
+  echo "ℹ️  No package changes detected, skipping package checks."
+  exit 0
 fi
+
+for pkg in $CHANGED; do
+  if [ -d "packages/$pkg" ] && [ -f "packages/$pkg/package.json" ]; then
+    echo "🔎 Linting packages/$pkg..."
+    pnpm -C "packages/$pkg" lint || {
+      echo "❌ Lint failed for packages/$pkg"
+      exit 1
+    }
+  fi
+done
+
+echo "✅ Pre-commit checks passed!"

@@ -1,13 +1,19 @@
 /**
- * @file ai/quality-estimator.ts
- * @description Translation quality estimation (QE) engine for i18n-core
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.1.0
+ * file quality-estimator.ts
+ * description AI 翻译质量评估
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
  *
- * Design inspired by FAmily π³ AgentQualityGates.
- * Implements rule-based + AI-assisted quality scoring.
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief AI 翻译质量评估
  */
-
 import { logger } from "../infra/logger.js";
 
 export type QESeverity = "critical" | "warning" | "info";

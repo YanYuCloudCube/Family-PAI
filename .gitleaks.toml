@@ -1,0 +1,63 @@
+title = "YYC3 Gitleaks Configuration"
+
+[allowlist]
+description = "Global Allowlists"
+paths = [
+    '''node_modules''',
+    '''dist''',
+    '''coverage''',
+    '''.git''',
+    '''pnpm-lock.yaml''',
+
+]
+
+[rules]
+description = "AWS Access Key"
+id = "aws-access-key"
+regex = '''(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'''
+tags = ["key", "AWS"]
+
+description = "AWS Secret Key"
+id = "aws-secret-key"
+regex = '''(?i)aws(.{0,20})?(?-i)['\"][0-9a-zA-Z/+=]{40}['\"]'''
+tags = ["key", "AWS"]
+
+description = "GitHub Personal Access Token"
+id = "github-pat"
+regex = '''ghp_[0-9a-zA-Z]{36}'''
+tags = ["key", "GitHub"]
+
+description = "GitHub OAuth Access Token"
+id = "github-oauth"
+regex = '''gho_[0-9a-zA-Z]{36}'''
+tags = ["key", "GitHub"]
+
+description = "GitHub App Token"
+id = "github-app"
+regex = '''(ghu|ghs)_[0-9a-zA-Z]{36}'''
+tags = ["key", "GitHub"]
+
+description = "GitHub Refresh Token"
+id = "github-refresh"
+regex = '''ghr_[0-9a-zA-Z]{36}'''
+tags = ["key", "GitHub"]
+
+description = "Generic API Key"
+id = "generic-api-key"
+regex = '''(?i)(api[_-]?key|apikey|secret|token|auth|credential|password|pwd)['":\s]+[0-9a-zA-Z\-_.]{16,}'''
+tags = ["key", "generic"]
+
+description = "NPM Token"
+id = "npm-token"
+regex = '''npm_[0-9a-zA-Z]{36}'''
+tags = ["key", "NPM"]
+
+description = "Slack Token"
+id = "slack-token"
+regex = '''xox[baprs]-[0-9a-zA-Z]{10,}'''
+tags = ["key", "Slack"]
+
+description = "Private Key"
+id = "private-key"
+regex = '''-----BEGIN (?:RSA |EC |DSA |OPENSSH )?PRIVATE KEY-----'''
+tags = ["key", "PEM"]

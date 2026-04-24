@@ -1,3 +1,19 @@
+/**
+ * file translate.test.ts
+ * description @yyc3/i18n-core translate.ts 单元测试
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [test],[unit]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/i18n-core translate.ts 单元测试
+ */
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { createStorageMock } from "../../test-helpers/storage.ts";
 import { pt_BR } from "../locales/pt-BR.ts";

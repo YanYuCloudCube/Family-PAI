@@ -1,10 +1,19 @@
 /**
- * @file rtl-utils.ts
- * @description RTL (Right-to-Left) utility functions for bidirectional text support
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file rtl-utils.ts
+ * description RTL 语言工具
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief RTL 语言工具
  */
-
 import type { HorizontalAlignment, RTLLocale, SpacingProperty, TextDirection } from './types.js';
 
 export const RTL_LOCALES: RTLLocale[] = ['ar'];

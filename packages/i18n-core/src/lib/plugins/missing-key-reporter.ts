@@ -1,10 +1,19 @@
 /**
- * @file plugins/missing-key-reporter.ts
- * @description Missing key reporter plugin for tracking and reporting missing translation keys
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file missing-key-reporter.ts
+ * description 缺失 Key 上报插件
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[plugin]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 缺失 Key 上报插件
  */
-
 import { logger } from "../infra/logger.js";
 import type { I18nPlugin } from "../plugins.js";
 import type { Locale } from "../types.js";

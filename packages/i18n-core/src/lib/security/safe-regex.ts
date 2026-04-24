@@ -1,10 +1,19 @@
 /**
- * @file security/safe-regex.ts
- * @description ReDoS-safe regex compilation with nested repetition detection
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file safe-regex.ts
+ * description ReDoS 防护安全正则
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[security]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief ReDoS 防护安全正则
  */
-
 export type SafeRegexRejectReason = "empty" | "unsafe-nested-repetition" | "invalid-regex";
 
 export type SafeRegexCompileResult =

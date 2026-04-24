@@ -1,0 +1,205 @@
+name: Packages CI
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'packages/**'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'tsconfig.base.json'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/**'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'tsconfig.base.json'
+  workflow_call:
+    secrets:
+      CODECOV_TOKEN:
+        required: false
+      YYC3_NPM_TOKEN:
+        required: false
+
+env:
+  NODE_ENV: test
+
+jobs:
+  build-and-test:
+    name: Build & Test Packages
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [20, 22]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build all packages
+        run: pnpm -r build
+
+      - name: Type check all packages
+        run: pnpm -r typecheck
+
+      - name: Lint all packages
+        run: pnpm -r lint
+
+      - name: Test all packages
+        run: pnpm -r test
+
+  coverage:
+    name: Coverage Report
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build all packages
+        run: pnpm -r build
+
+      - name: Generate coverage for @yyc3/core
+        run: pnpm -C packages/core test -- --coverage
+
+      - name: Generate coverage for @yyc3/ai-hub
+        run: pnpm -C packages/ai-hub test -- --coverage
+
+      - name: Generate coverage for @yyc3/ui
+        run: pnpm -C packages/ui test -- --coverage
+
+      - name: Generate coverage for @yyc3/plugins
+        run: pnpm -C packages/plugins test -- --coverage
+
+      - name: Generate coverage for @yyc3/i18n-core
+        run: pnpm -C packages/i18n-core test -- --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: packages/core/coverage/lcov.info,packages/ai-hub/coverage/lcov.info,packages/ui/coverage/lcov.info,packages/plugins/coverage/lcov.info,packages/i18n-core/coverage/lcov.info
+          fail_ci_if_error: false
+
+  audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run pnpm audit
+        run: pnpm audit --audit-level=high
+
+  license:
+    name: License Compliance
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check license compliance
+        run: npx license-checker --production --failOn "GPL;LGPL;AGPL" --excludePrivatePackages
+
+  size-limit:
+    name: Package Size Limit
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build all packages
+        run: pnpm -r build
+
+      - name: Check package sizes
+        run: pnpm -r exec size-limit
+
+  secrets-scan:
+    name: Scan for Secrets
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        with:
+          config-path: .gitleaks.toml

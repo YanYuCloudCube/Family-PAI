@@ -1,3 +1,19 @@
+/**
+ * file index.ts
+ * description @yyc3/ai-hub 模块入口
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [config]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/ai-hub 模块入口
+ */
 export { HubConfigSchema, AuthTypeSchema, ModelMappingSchema } from './hub.schema.js';
 export type { HubConfigInput, HubConfigOutput, AuthType, ModelTier } from './hub.schema.js';
 

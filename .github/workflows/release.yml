@@ -1,0 +1,180 @@
+name: Release to npm & GHCR
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  quality-gate:
+    name: Quality Gate
+    uses: ./.github/workflows/packages-ci.yml
+    secrets: inherit
+
+  publish-packages:
+    name: Publish Packages
+    needs: quality-gate
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: [core, ai-hub, ui, plugins, i18n-core]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate version matches tag
+        run: |
+          PKG_VERSION=$(node -p "require('./packages/${{ matrix.package }}/package.json').version")
+          TAG_VERSION=${GITHUB_REF#refs/tags/v}
+          echo "Package version: $PKG_VERSION"
+          echo "Tag version: $TAG_VERSION"
+          if [ "$PKG_VERSION" != "$TAG_VERSION" ]; then
+            echo "::error::Package version $PKG_VERSION does not match tag $TAG_VERSION"
+            exit 1
+          fi
+
+      - name: Determine dist-tag
+        id: tag
+        run: |
+          if [[ "${GITHUB_REF}" == *"beta"* ]] || [[ "${GITHUB_REF}" == *"alpha"* ]]; then
+            echo "tag=beta" >> $GITHUB_OUTPUT
+          elif [[ "${GITHUB_REF}" == *"rc"* ]]; then
+            echo "tag=rc" >> $GITHUB_OUTPUT
+          else
+            echo "tag=latest" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build package
+        run: pnpm --filter @yyc3/${{ matrix.package }} run build
+
+      - name: Publish to npm
+        run: pnpm --filter @yyc3/${{ matrix.package }} publish --access public --provenance --tag ${{ steps.tag.outputs.tag }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.YYC3_NPM_TOKEN }}
+
+  docker-release:
+    name: Docker Release
+    needs: quality-gate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,format=long
+
+      - name: Build and push Docker image
+        id: build-and-push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./server
+          file: server/src/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Sign image with cosign
+        if: github.event_name != 'pull_request'
+        env:
+          TAGS: ${{ steps.meta.outputs.tags }}
+          DIGEST: ${{ steps.build-and-push.outputs.digest }}
+        run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+
+  changelog-update:
+    name: Update Changelog
+    needs: publish-packages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate changelog
+        run: npx conventional-changelog -p angular -i CHANGELOG.md -s -r 1 || echo "No changes"
+
+      - name: Commit changelog
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git diff --cached --quiet || git commit -m "docs: update CHANGELOG [skip ci]" || echo "No changes"
+          git push || echo "Nothing to push"
+
+  post-release-verify:
+    name: Post Release Verification
+    needs: [publish-packages, docker-release]
+    runs-on: ubuntu-latest
+    if: success()
+
+    steps:
+      - name: Verify npm packages
+        run: |
+          echo "📦 Verifying published packages..."
+          for pkg in core ai-hub ui plugins i18n-core; do
+            VERSION=$(npm view @yyc3/$pkg version 2>/dev/null || echo "not found")
+            echo "  @yyc3/$pkg: $VERSION"
+          done
+
+      - name: Summary
+        run: |
+          echo "🎉 Release ${{ github.ref_name }} completed successfully!"
+          echo ""
+          echo "Published:"
+          echo "  - 5 npm packages (@yyc3/*)"
+          echo "  - Docker image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}"
+          echo "  - Changelog updated"

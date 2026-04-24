@@ -1,10 +1,19 @@
 /**
- * @file i18n-audit.ts
- * @description Translation audit logger for tracking missing keys and quality monitoring
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file i18n-audit.ts
+ * description 翻译审计系统
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[i18n]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 翻译审计系统
  */
-
 import { t } from "./engine.js";
 import { logger } from "./infra/logger.js";
 

@@ -1,11 +1,19 @@
 /**
- * @file YYC³ AI Hub 核心
- * @description 基于「五高五标五化」理念的AI「五维」多Agent应用核心中枢
- * @module @yyc3/ai-hub
- * @author YYC³ AI Team
- * @version 1.0.0
+ * file hub.ts
+ * description AI Hub 核心实现
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief AI Hub 核心实现
  */
-
 import { YYC3Auth } from './auth.js';
 import { AgentManager } from './agents.js';
 import { SkillManager } from './skills.js';

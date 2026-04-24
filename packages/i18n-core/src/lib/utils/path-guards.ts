@@ -1,10 +1,19 @@
 /**
- * @file utils/path-guards.ts
- * @description Path traversal prevention and filesystem error classification utilities
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file path-guards.ts
+ * description 路径安全守卫
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 路径安全守卫
  */
-
 import path from "node:path";
 
 const NOT_FOUND_CODES = new Set(["ENOENT", "ENOTDIR"]);

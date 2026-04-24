@@ -1,10 +1,19 @@
 /**
- * @file infra/backoff.ts
- * @description Exponential backoff with jitter for high-availability retry strategies
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file backoff.ts
+ * description 指数退避重试
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[infra]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 指数退避重试
  */
-
 import { setTimeout as delay } from "node:timers/promises";
 
 export type BackoffPolicy = {

@@ -1,10 +1,19 @@
 /**
- * @file utils/json-file.ts
- * @description Safe JSON file read/write/delete utilities with error handling
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file json-file.ts
+ * description JSON 文件读写
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief JSON 文件读写
  */
-
 import fs from "node:fs";
 import path from "node:path";
 

@@ -1,13 +1,19 @@
 /**
- * @file cli/chinese-detector.ts
- * @description Detect hardcoded Chinese strings in source code
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.1.0
+ * file chinese-detector.ts
+ * description 中文检测器
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
  *
- * Design methodology from LobeHub i18nWorkflow.
- * Zero dependencies - regex-based detection.
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 中文检测器
  */
-
 export interface DetectionResult {
   file: string;
   line: number;

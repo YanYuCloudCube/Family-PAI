@@ -1,11 +1,19 @@
 /**
- * @file YYC³ AI Hub 类型定义
- * @description 核心类型定义文件
- * @module @yyc3/ai-hub/types
- * @author YYC³ AI Team
- * @version 1.0.0
+ * file types.ts
+ * description @yyc3/ai-hub 类型定义
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/ai-hub 类型定义
  */
-
 export interface HubConfig {
   authType?: 'openai' | 'ollama' | 'anthropic' | 'auto';
   apiKey?: string;

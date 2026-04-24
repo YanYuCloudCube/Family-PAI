@@ -1,3 +1,19 @@
+/**
+ * file task-manager.ts
+ * description 任务管理器
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 任务管理器
+ */
 import {
   Task,
   TaskStatus,

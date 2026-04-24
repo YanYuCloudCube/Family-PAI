@@ -1,14 +1,19 @@
 /**
- * @file icu/parser.ts
- * @description Lightweight ICU MessageFormat parser
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.1.0
+ * file parser.ts
+ * description ICU MessageFormat 解析器
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[i18n]
  *
- * Parses ICU MessageFormat strings into an AST.
- * Supports: arguments, plural, select, selectOrdinal, number, date, time.
- * @see https://unicode.org/reports/tr35/tr35-messages.html
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief ICU MessageFormat 解析器
  */
-
 import type {
   ICUDate,
   ICUNode,

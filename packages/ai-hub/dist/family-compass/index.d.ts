@@ -1,5 +1,22 @@
-import { a as CompassState, F as FamilyMemberId, P as PhoneCallSession, C as CallMessage, M as MemoryEntry, b as FamilyPersona } from '../types-DgCmdfFZ.js';
-export { D as DutyRosterEntry, G as GrowthMilestone } from '../types-DgCmdfFZ.js';
+import { a as CompassState, F as FamilyMemberId, P as PhoneCallSession, C as CallMessage, M as MemoryEntry, b as FamilyPersona } from '../types-CLG85-BK.js';
+export { D as DutyRosterEntry, G as GrowthMilestone } from '../types-CLG85-BK.js';
+
+/**
+ * file family-compass.ts
+ * description Family Compass 时钟罗盘
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[ai-family]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief Family Compass 时钟罗盘
+ */
 
 declare class FamilyCompass {
     private personas;
@@ -33,6 +50,23 @@ declare class FamilyCompass {
     getActiveMemberForTime(date: Date): FamilyPersona;
 }
 declare function createFamilyCompass(): FamilyCompass;
+
+/**
+ * file personas.ts
+ * description AI 家人人设定义
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[ai-family]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief AI 家人人设定义
+ */
 
 declare const FAMILY_PERSONAS: Record<FamilyMemberId, FamilyPersona>;
 declare function getPersona(memberId: FamilyMemberId): FamilyPersona;

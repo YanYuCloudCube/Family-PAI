@@ -1,10 +1,19 @@
 /**
- * @file security/secret-equal.ts
- * @description Timing-safe secret comparison to prevent timing attacks
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file secret-equal.ts
+ * description 时序攻击防护比较
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[security]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 时序攻击防护比较
  */
-
 import { createHash, timingSafeEqual } from "node:crypto";
 
 export function safeEqualSecret(

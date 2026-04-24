@@ -1,3 +1,19 @@
+/**
+ * file codes.ts
+ * description 错误码定义
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 错误码定义
+ */
 export enum YYC3ErrorCode {
   // === AUTH 认证模块 (AUTH_1xxx) ===
   AUTH_NO_PROVIDER = 'AUTH_1001',

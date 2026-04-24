@@ -1,3 +1,19 @@
+/**
+ * file agents.test.ts
+ * description @yyc3/ai-hub agents.ts 单元测试
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [test],[unit]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/ai-hub agents.ts 单元测试
+ */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { AgentManager } from '../../src/agents.js';
 import { YYC3Auth } from '../../src/auth.js';

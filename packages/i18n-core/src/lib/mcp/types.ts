@@ -1,13 +1,19 @@
 /**
- * @file mcp/types.ts
- * @description MCP (Model Context Protocol) type definitions for i18n-core
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.1.0
+ * file types.ts
+ * description @yyc3/i18n-core 类型定义
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[mcp]
  *
- * Based on FAmily π³ MCP types, adapted for i18n use cases.
- * Zero runtime dependencies - pure type definitions only.
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/i18n-core 类型定义
  */
-
 export type MCPMessageType =
   | "request"
   | "response"

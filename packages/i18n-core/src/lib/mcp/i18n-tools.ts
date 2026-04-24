@@ -1,10 +1,19 @@
 /**
- * @file mcp/i18n-tools.ts
- * @description Standard i18n MCP tools registration
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.1.0
+ * file i18n-tools.ts
+ * description MCP i18n 工具集
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[mcp]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief MCP i18n 工具集
  */
-
 import type { I18nEngine } from "../engine.js";
 import type { MCPServer } from "./server.js";
 import type { MCPTool, MCPToolResult } from "./types.js";

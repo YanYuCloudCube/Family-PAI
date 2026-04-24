@@ -1,3 +1,19 @@
+/**
+ * file personas.ts
+ * description AI 家人人设定义
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[ai-family]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief AI 家人人设定义
+ */
 import { FamilyPersona, FamilyMemberId } from './types';
 
 export type { FamilyMemberId } from './types';

@@ -1,3 +1,19 @@
+/**
+ * file mcp.schema.ts
+ * description MCP Schema 定义
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[mcp]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief MCP Schema 定义
+ */
 import { z } from 'zod';
 
 export const MCPServerMetadataSchema = z.object({

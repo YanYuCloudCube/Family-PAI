@@ -1,5 +1,21 @@
-import { F as FamilyMemberId } from '../types-DgCmdfFZ.js';
+import { F as FamilyMemberId } from '../types-CLG85-BK.js';
 
+/**
+ * file types.ts
+ * description @yyc3/ai-hub 类型定义
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[ai-family]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/ai-hub 类型定义
+ */
 type FamilyRole = 'teacher' | 'friend' | 'mentor' | 'guardian' | 'companion' | 'advisor' | 'creator' | 'navigator' | 'analyst' | 'prophet' | 'recommender' | 'orchestrator' | 'sentinel' | 'master';
 type EmotionType = 'joy' | 'peace' | 'anxiety' | 'sadness' | 'anger' | 'confusion' | 'excitement' | 'frustration';
 type CollaborationMode = 'sequential' | 'parallel' | 'hierarchical' | 'democratic' | 'mentoring' | 'creative' | 'visual' | 'independent' | 'logical' | 'harmonious' | 'inclusive' | 'results-driven' | 'user-centered' | 'paradigm-shifting' | 'collaborative' | 'intuitive';
@@ -206,6 +222,23 @@ interface FamilyOrchestrationConfig {
     learningRate: number;
 }
 
+/**
+ * file base-member.ts
+ * description AI 家人基类
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[ai-family]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief AI 家人基类
+ */
+
 interface IFamilyMember {
     readonly id: string;
     readonly name: string;
@@ -255,6 +288,23 @@ declare abstract class BaseFamilyMember implements IFamilyMember {
     protected adaptTone(text: string, style: 'formal' | 'casual' | 'adaptive'): string;
     protected generateEmpathicResponse(emotion: EmotionState): string;
 }
+
+/**
+ * file members.ts
+ * description AI 家人定义
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[ai-family]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief AI 家人定义
+ */
 
 declare class Qianxing extends BaseFamilyMember {
     constructor();
@@ -324,6 +374,23 @@ declare const FAMILY_MEMBERS: {
 };
 declare function createFamilyMember(id: FamilyMemberId): BaseFamilyMember;
 
+/**
+ * file orchestrator.ts
+ * description AI 家人调度器
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[ai-family]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief AI 家人调度器
+ */
+
 declare class FamilyOrchestrator {
     private members;
     private activeSessions;
@@ -345,6 +412,23 @@ declare class FamilyOrchestrator {
     getAllMembersStatus(): MemberStatus[];
     getSession(sessionId: string): CollaborationSession | undefined;
 }
+
+/**
+ * file emotional-intelligence.ts
+ * description 情感智能系统
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[ai-family]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 情感智能系统
+ */
 
 interface EmotionAnalysis {
     primary: EmotionState;
@@ -397,6 +481,23 @@ declare class EmotionalIntelligence {
     private identifyGrowthAreas;
     private generateGrowthRecommendations;
 }
+
+/**
+ * file growth-system.ts
+ * description 成长系统
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[ai-family]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 成长系统
+ */
 
 interface GrowthPath {
     id: string;

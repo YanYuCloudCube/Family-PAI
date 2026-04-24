@@ -1,3 +1,19 @@
+/**
+ * file plugins.test.ts
+ * description @yyc3/i18n-core plugins.ts 单元测试
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [test],[plugin],[unit]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/i18n-core plugins.ts 单元测试
+ */
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { createConsoleLogger, type ConsoleLoggerConfig } from "../lib/plugins/console-logger.js";
 import { MissingKeyReporter } from "../lib/plugins/missing-key-reporter.js";

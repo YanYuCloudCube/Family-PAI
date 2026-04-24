@@ -1,10 +1,19 @@
 /**
- * @file plugins.ts
- * @description Plugin system architecture for i18n extensibility with lifecycle hooks
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file plugins.ts
+ * description @yyc3/i18n-core lib/plugins.ts 模块
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[plugin]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/i18n-core lib/plugins.ts 模块
  */
-
 import { logger } from './infra/logger.js';
 import type { Locale } from './types.js';
 

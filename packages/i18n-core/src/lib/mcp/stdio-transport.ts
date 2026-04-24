@@ -1,13 +1,19 @@
 /**
- * @file mcp/stdio-transport.ts
- * @description Stdio-based MCP transport for CLI integration
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.1.0
+ * file stdio-transport.ts
+ * description MCP 标准传输层
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[mcp]
  *
- * Based on FAmily π³ StdioTransport pattern.
- * Zero dependencies beyond Node.js built-ins.
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief MCP 标准传输层
  */
-
 import { Readable, Writable } from "node:stream";
 import type { MCPMessage, MCPTransport } from "./types.js";
 import { logger } from "../infra/logger.js";

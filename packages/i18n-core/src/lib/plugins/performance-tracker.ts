@@ -1,10 +1,19 @@
 /**
- * @file plugins/performance-tracker.ts
- * @description Performance tracker plugin for monitoring translation metrics and analytics
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file performance-tracker.ts
+ * description 性能追踪插件
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[plugin]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 性能追踪插件
  */
-
 import type { I18nPlugin } from "../plugins.js";
 
 interface PerformanceEntry {

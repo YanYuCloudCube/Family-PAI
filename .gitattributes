@@ -1,15 +1,17 @@
-# Cross-Platform Line Ending Configuration for MCP Claude Prompts Server
-# Ensures consistent behavior across Windows, macOS, and Linux development environments
+# Cross-Platform Line Ending Configuration for YYC³ Family-PAI
+# Ensures consistent behavior across Windows, macOS, and Linux
 
-# Default behavior: normalize line endings to LF on checkin, convert to native on checkout
 * text=auto
 
-# Explicitly declare text files and line ending handling
+# Text files
 *.md text
 *.json text
 *.js text
 *.ts text
+*.tsx text
 *.mjs text
+*.mts text
+*.cts text
 *.yml text
 *.yaml text
 *.txt text
@@ -21,15 +23,15 @@
 *.gitignore text
 *.gitattributes text
 
-# Shell scripts should always use LF (for cross-platform compatibility)
+# Shell scripts always LF
 *.sh text eol=lf
 *.bash text eol=lf
 
-# Windows batch files should use CRLF
+# Windows batch files CRLF
 *.bat text eol=crlf
 *.cmd text eol=crlf
 
-# Binary files (declare as binary to prevent line ending conversion)
+# Binary files
 *.png binary
 *.jpg binary
 *.jpeg binary
@@ -45,60 +47,39 @@
 *.so binary
 *.dylib binary
 
-# Node.js specific files
+# Node.js files
 package.json text
 package-lock.json text
+pnpm-lock.yaml text
 .nvmrc text
 .node-version text
 
 # Git files
 .gitignore text
 .gitattributes text
-.gitkeep text
 
-# GitHub and CI/CD files
-.github/** text
+# Config files
+tsconfig.json text
+tsconfig.*.json text
+.eslintrc* text
+.prettierrc* text
+*.config.js text
+*.config.ts text
 
-# MCP Server specific files
-promptsConfig.json text
-config.json text
-*.mcp text
+# Documentation
+README* text
+LICENSE* text
+CHANGELOG* text
+CONTRIBUTING* text
 
-# Ensure consistent handling of sensitive files
+# Sensitive files
 *.env text
 *.key binary
 *.pem binary
 *.p12 binary
 *.pfx binary
 
-# Documentation files
-README* text
-LICENSE* text
-CHANGELOG* text
-CONTRIBUTING* text
-*.md text
-
-# TypeScript and JavaScript configuration
-tsconfig.json text
-jsconfig.json text
-.eslintrc* text
-.prettierrc* text
-*.config.js text
-*.config.ts text
-
-# Line ending overrides for specific problematic files
-# (These patterns help prevent Windows-specific issues)
-server/dist/** binary
+# Generated / cache directories
 node_modules/** binary
+dist/** binary
 coverage/** binary
-logs/** binary
-
-# Special handling for files that might cause Windows issues
-# Exclude problematic characters and ensure proper encoding
-*.log text
-*.tmp binary
-*.cache binary
-
-# AI and prompt specific files (ensure proper text handling)
-server/prompts/**/*.md text
-server/prompts/**/*.json text

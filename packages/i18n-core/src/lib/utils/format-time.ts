@@ -1,10 +1,19 @@
 /**
- * @file utils/format-time.ts
- * @description Time formatting utilities for relative timestamps and time-ago display
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file format-time.ts
+ * description 时间格式化工具
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 时间格式化工具
  */
-
 export type FormatTimeAgoOptions = {
   suffix?: boolean;
   fallback?: string;

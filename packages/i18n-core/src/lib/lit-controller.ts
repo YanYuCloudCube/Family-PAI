@@ -1,10 +1,19 @@
 /**
- * @file lit-controller.ts
- * @description Lit reactive controller for automatic i18n locale change updates
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file lit-controller.ts
+ * description Lit 响应式控制器
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief Lit 响应式控制器
  */
-
 import type { ReactiveController, ReactiveControllerHost } from "lit";
 import { i18n } from "./engine.js";
 

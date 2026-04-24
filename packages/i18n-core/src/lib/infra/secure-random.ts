@@ -1,10 +1,19 @@
 /**
- * @file infra/secure-random.ts
- * @description Cryptographically secure random generation utilities using Node.js crypto
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file secure-random.ts
+ * description 安全随机数
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[infra]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 安全随机数
  */
-
 import { randomBytes, randomInt, randomUUID } from "node:crypto";
 
 export function generateSecureUuid(): string {

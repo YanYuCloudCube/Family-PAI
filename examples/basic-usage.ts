@@ -1,11 +1,11 @@
 /**
- * @file Claw 使用示例
- * @description 展示如何使用 Claw AI 系统
+ * @file Family 使用示例
+ * @description 展示如何使用 Family AI 系统
  * @module examples
  * @author YYC
  */
 
-import { UnifiedAuthManager, SkillManager, MCPClient } from '@claw-ai/core'
+import { UnifiedAuthManager, SkillManager, MCPClient } from '@yyc3/core'
 
 /**
  * 示例 1: 基础聊天
@@ -82,7 +82,7 @@ async function skillSystem() {
  */
 async function mcpClient() {
   const client = new MCPClient({
-    name: 'claw-example',
+    name: 'family-example',
     version: '1.0.0',
     transport: {
       type: 'stdio',
@@ -116,7 +116,7 @@ async function mcpClient() {
  * 主函数
  */
 async function main() {
-  console.log('🚀 Claw AI 使用示例\n')
+  console.log('🚀 Family AI 使用示例\n')
   
   try {
     console.log('=== 示例 1: 基础聊天 ===')

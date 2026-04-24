@@ -1,3 +1,19 @@
+/**
+ * file stdio-transport.test.ts
+ * description @yyc3/i18n-core stdio-transport.ts 单元测试
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [test],[mcp],[unit]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/i18n-core stdio-transport.ts 单元测试
+ */
 import { describe, expect, it, beforeEach } from "vitest";
 import { StdioTransport } from "../../lib/mcp/stdio-transport.js";
 import type { MCPMessage } from "../../lib/mcp/types.js";

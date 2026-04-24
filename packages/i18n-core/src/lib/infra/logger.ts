@@ -1,10 +1,19 @@
 /**
- * @file logger.ts
- * @description Unified logging abstraction for YYC³ i18n Core - eliminates direct console output in production
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file logger.ts
+ * description 日志系统
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[infra]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 日志系统
  */
-
 export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
 
 const LOG_LEVEL_PRIORITY: Record<LogLevel, number> = {

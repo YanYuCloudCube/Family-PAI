@@ -1,3 +1,19 @@
+/**
+ * file logger.ts
+ * description 日志系统
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 日志系统
+ */
 const DEBUG = typeof process !== 'undefined' && process.env?.['YYC3_DEBUG'] === 'true';
 
 export const logger = {

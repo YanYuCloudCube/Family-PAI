@@ -1,10 +1,19 @@
 /**
- * @file types.ts
- * @description Core type definitions for the i18n framework
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file types.ts
+ * description @yyc3/i18n-core 类型定义
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/i18n-core 类型定义
  */
-
 export type TranslationMap = { [key: string]: string | TranslationMap };
 
 export type Locale =

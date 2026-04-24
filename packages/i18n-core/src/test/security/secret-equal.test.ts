@@ -1,3 +1,19 @@
+/**
+ * file secret-equal.test.ts
+ * description @yyc3/i18n-core secret-equal.ts 单元测试
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [test],[security],[unit]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/i18n-core secret-equal.ts 单元测试
+ */
 import { describe, expect, it } from "vitest";
 import { safeEqualSecret } from "../../lib/security/secret-equal.js";
 

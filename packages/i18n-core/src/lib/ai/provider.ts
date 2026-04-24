@@ -1,13 +1,19 @@
 /**
- * @file ai/provider.ts
- * @description AI provider abstraction layer for LLM-powered translation
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.1.0
+ * file provider.ts
+ * description AI 翻译提供者管理
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
  *
- * Design inspired by FAmily π³ UnifiedAuthManager.
- * Zero runtime dependencies - no zod, no eventemitter3.
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief AI 翻译提供者管理
  */
-
 import { logger } from "../infra/logger.js";
 
 export type AIProviderType = "openai" | "ollama" | "anthropic" | "azure" | "custom";

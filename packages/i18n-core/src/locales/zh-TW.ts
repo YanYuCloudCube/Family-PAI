@@ -1,7 +1,19 @@
 /**
- * Traditional Chinese translations
+ * file zh-TW.ts
+ * description @yyc3/i18n-core locales/zh-TW.ts 模块
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[i18n]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/i18n-core locales/zh-TW.ts 模块
  */
-
 export const zh_TW = {
     common: {
         health: "健康狀態",

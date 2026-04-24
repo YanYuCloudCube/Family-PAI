@@ -31,6 +31,12 @@ export default tseslint.config(
     },
   },
   {
+    files: ['src/__tests__/**'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
+  {
     ignores: ['dist/**', 'node_modules/**', '*.js', '*.mjs', '*.cjs', 'coverage/**'],
   }
 )

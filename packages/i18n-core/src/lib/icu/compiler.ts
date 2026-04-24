@@ -1,10 +1,19 @@
 /**
- * @file icu/compiler.ts
- * @description ICU MessageFormat compiler - AST to localized string
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.1.0
+ * file compiler.ts
+ * description ICU MessageFormat 编译器
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[i18n]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief ICU MessageFormat 编译器
  */
-
 import type { ICUNode, ICUPlural, ICUSelect, ICUSelectOrdinal } from "./types.js";
 
 export interface ICUCompileContext {

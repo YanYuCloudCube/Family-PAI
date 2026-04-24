@@ -1,15 +1,24 @@
 import OpenAI from 'openai';
 import { ChildProcess } from 'child_process';
 export { FAMILY_PERSONAS, FamilyCompass, createFamilyCompass, getAllPersonas, getNextDutyMember, getPersona, getPersonaByHour } from './family-compass/index.js';
-export { C as CallMessage, a as CompassState, D as DutyRosterEntry, F as FamilyMemberId, b as FamilyPersona, G as GrowthMilestone, M as MemoryEntry, P as PhoneCallSession } from './types-DgCmdfFZ.js';
-export { A as ActivityFeedItem, a as Attachment, C as CollaborationMemberState, b as CollaborationMessage, c as CollaborationMode, d as CollaborationSession, e as Comment, F as FamilyMemberWorkProfile, f as FamilyWorkSystem, T as Task, g as TaskCategory, h as TaskPriority, i as TaskStatus, j as TrustEvent, k as TrustLevel, l as TrustRecord, W as WorkDashboardData, m as WorkLogEntry, n as WorkStatus, o as createFamilyWorkSystem } from './index-5BKIaVzD.js';
+export { C as CallMessage, a as CompassState, D as DutyRosterEntry, F as FamilyMemberId, b as FamilyPersona, G as GrowthMilestone, M as MemoryEntry, P as PhoneCallSession } from './types-CLG85-BK.js';
+export { A as ActivityFeedItem, a as Attachment, C as CollaborationMemberState, b as CollaborationMessage, c as CollaborationMode, d as CollaborationSession, e as Comment, F as FamilyMemberWorkProfile, f as FamilyWorkSystem, T as Task, g as TaskCategory, h as TaskPriority, i as TaskStatus, j as TrustEvent, k as TrustLevel, l as TrustRecord, W as WorkDashboardData, m as WorkLogEntry, n as WorkStatus, o as createFamilyWorkSystem } from './index-Dc3f7KbH.js';
 
 /**
- * @file YYC³ AI Hub 类型定义
- * @description 核心类型定义文件
- * @module @yyc3/ai-hub/types
- * @author YYC³ AI Team
- * @version 1.0.0
+ * file types.ts
+ * description @yyc3/ai-hub 类型定义
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/ai-hub 类型定义
  */
 interface HubConfig {
     authType?: 'openai' | 'ollama' | 'anthropic' | 'auto';
@@ -88,11 +97,20 @@ interface AgentExecutionResult {
 }
 
 /**
- * @file YYC³ 统一认证系统
- * @description 支持 OpenAI、Ollama、Anthropic 多提供商认证
- * @module @yyc3/ai-hub/auth
- * @author YYC³ AI Team
- * @version 1.0.0
+ * file auth.ts
+ * description 认证管理模块
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[auth]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 认证管理模块
  */
 
 type AuthType = 'openai' | 'ollama' | 'anthropic' | 'auto';
@@ -123,11 +141,20 @@ declare class YYC3Auth {
 }
 
 /**
- * @file YYC³ Agent 管理器
- * @description 管理 112+ 专业 AI Agent
- * @module @yyc3/ai-hub/agents
- * @author YYC³ AI Team
- * @version 1.0.0
+ * file agents.ts
+ * description Agent 管理实现
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief Agent 管理实现
  */
 
 interface Agent {
@@ -149,11 +176,20 @@ declare class AgentManager {
 }
 
 /**
- * @file YYC³ 技能管理器
- * @description 管理 146+ 专业技能
- * @module @yyc3/ai-hub/skills
- * @author YYC³ AI Team
- * @version 1.0.0
+ * file skills.ts
+ * description 技能系统实现
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[ai]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 技能系统实现
  */
 
 interface Skill {
@@ -175,11 +211,20 @@ declare class SkillManager {
 }
 
 /**
- * @file YYC³ MCP 服务器管理器
- * @description 管理 4500+ MCP 服务器配置
- * @module @yyc3/ai-hub/mcp
- * @author YYC³ AI Team
- * @version 1.0.0
+ * file mcp.ts
+ * description MCP 协议实现
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[mcp]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief MCP 协议实现
  */
 
 interface MCPServer {
@@ -206,11 +251,20 @@ declare class MCPManager {
 }
 
 /**
- * @file YYC³ AI Hub 核心
- * @description 基于「五高五标五化」理念的AI「五维」多Agent应用核心中枢
- * @module @yyc3/ai-hub
- * @author YYC³ AI Team
- * @version 1.0.0
+ * file hub.ts
+ * description AI Hub 核心实现
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief AI Hub 核心实现
  */
 
 declare class YYC3AIHub {
@@ -236,6 +290,22 @@ declare class YYC3AIHub {
     getAuth(): YYC3Auth;
 }
 
+/**
+ * file codes.ts
+ * description 错误码定义
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 错误码定义
+ */
 declare enum YYC3ErrorCode {
     AUTH_NO_PROVIDER = "AUTH_1001",
     AUTH_OPENAI_KEY_MISSING = "AUTH_1002",
@@ -269,9 +339,43 @@ declare enum YYC3ErrorCode {
 declare const YYC3_ERROR_DOMAINS: Record<string, string>;
 declare const YYC3_ERROR_DOMAINS_EN: Record<string, string>;
 
+/**
+ * file messages.ts
+ * description 错误消息定义
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 错误消息定义
+ */
+
 interface YYC3ErrorContext {
     [key: string]: unknown;
 }
+
+/**
+ * file index.ts
+ * description @yyc3/ai-hub 模块入口
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [config]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/ai-hub 模块入口
+ */
 
 type Locale = 'zh' | 'en';
 declare function setLocale(locale: Locale): void;
@@ -296,6 +400,23 @@ declare class YYC3Error extends Error {
     static isYYC3Error(error: unknown): error is YYC3Error;
     static fromError(error: unknown, fallbackCode?: YYC3ErrorCode): YYC3Error;
 }
+
+/**
+ * file index.ts
+ * description @yyc3/ai-hub 模块入口
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [config]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/ai-hub 模块入口
+ */
 
 declare class ValidationError extends Error {
     readonly code = "SCHEMA_6001";

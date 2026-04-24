@@ -1,11 +1,19 @@
 /**
- * @file YYC³ 技能管理器
- * @description 管理 146+ 专业技能
- * @module @yyc3/ai-hub/skills
- * @author YYC³ AI Team
- * @version 1.0.0
+ * file skills.ts
+ * description 技能系统实现
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[ai]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 技能系统实现
  */
-
 import { SkillDefinition } from './types.js';
 import * as fs from 'fs';
 import * as path from 'path';

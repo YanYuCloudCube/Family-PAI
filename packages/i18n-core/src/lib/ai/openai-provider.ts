@@ -1,13 +1,19 @@
 /**
- * @file ai/openai-provider.ts
- * @description OpenAI provider for LLM-powered translation
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.1.0
+ * file openai-provider.ts
+ * description OpenAI 认证提供者
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
  *
- * Design inspired by FAmily π³ OpenAIProvider.
- * Zero dependencies - uses native fetch API.
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief OpenAI 认证提供者
  */
-
 import { logger } from "../infra/logger.js";
 import type {
   AIProvider,

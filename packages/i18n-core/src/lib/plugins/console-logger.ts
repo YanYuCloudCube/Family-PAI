@@ -1,10 +1,19 @@
 /**
- * @file plugins/console-logger.ts
- * @description Console logger plugin for development-mode translation activity logging
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file console-logger.ts
+ * description 控制台日志插件
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[plugin]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 控制台日志插件
  */
-
 import type { I18nPlugin, I18nContext } from "../plugins.js";
 import type { Locale } from "../types.js";
 

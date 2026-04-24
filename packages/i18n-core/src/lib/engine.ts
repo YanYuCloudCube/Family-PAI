@@ -1,18 +1,19 @@
 /**
- * @file engine.ts
- * @description Enhanced I18n Engine (v2.0) - Production-Ready Translation Engine with LRU caching, plugin architecture, and namespace support
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.1.0
+ * file engine.ts
+ * description i18n 核心引擎实现
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
  *
- * Features:
- * - LRU caching for performance
- * - Plugin architecture for extensibility
- * - Namespace support for large applications
- * - Batch translation API
- * - Comprehensive error handling
- * - Debug mode for development
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief i18n 核心引擎实现
  */
-
 import { en } from "../locales/en.js";
 import { LRUCache } from "./cache.js";
 import { ICUCompiler } from "./icu/compiler.js";

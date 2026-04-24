@@ -1,10 +1,19 @@
 /**
- * @file security/dangerous-operations.ts
- * @description Dangerous operation detection for security auditing and access control
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file dangerous-operations.ts
+ * description 注入检测
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[security]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 注入检测
  */
-
 export const DANGEROUS_OPERATION_NAMES = [
   "exec",
   "spawn",

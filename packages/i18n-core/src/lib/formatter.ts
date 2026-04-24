@@ -1,11 +1,19 @@
 /**
- * @file formatter.ts
- * @description String interpolation, pluralization, and relative-time formatting utilities
- * @author YYC³ Team <team@yyc3.dev>
- * @version 2.0.1
+ * file formatter.ts
+ * description 翻译格式化器
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 翻译格式化器
  */
-
-
 export interface TranslateParams {
   [key: string]: unknown;
 }

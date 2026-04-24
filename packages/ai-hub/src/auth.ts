@@ -1,11 +1,19 @@
 /**
- * @file YYC³ 统一认证系统
- * @description 支持 OpenAI、Ollama、Anthropic 多提供商认证
- * @module @yyc3/ai-hub/auth
- * @author YYC³ AI Team
- * @version 1.0.0
+ * file auth.ts
+ * description 认证管理模块
+ * module @yyc3/ai-hub
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 1.0.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [module],[auth]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief 认证管理模块
  */
-
 import OpenAI from 'openai';
 import { HubConfig } from './types.js';
 import { logger } from './logger.js';

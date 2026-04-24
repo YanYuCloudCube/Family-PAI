@@ -1,3 +1,19 @@
+/**
+ * file i18n-audit.test.ts
+ * description @yyc3/i18n-core i18n-audit.ts 单元测试
+ * module @yyc3/i18n-core
+ * author YanYuCloudCube Team <admin@0379.email>
+ * version 2.3.0
+ * created 2026-04-24
+ * updated 2026-04-24
+ * status active
+ * tags [test],[i18n],[unit]
+ *
+ * copyright YanYuCloudCube Team
+ * license MIT
+ *
+ * brief @yyc3/i18n-core i18n-audit.ts 单元测试
+ */
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { createAuditedT, i18nAudit } from "../lib/i18n-audit.js";
 import { setLogLevel, type LogLevel } from "../lib/infra/logger.js";
